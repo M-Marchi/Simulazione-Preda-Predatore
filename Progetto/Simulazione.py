@@ -7,7 +7,7 @@ import pandas as pd
 
 import Ambiente as a
 import Vector2D as v2
-import plot as pl
+import Plot as pl
 
 pygame.init()
 
@@ -17,9 +17,17 @@ random.seed(seed)
 
 # Settings simulazione:
 
-GRAFICA = False
+GRAFICA = True
 REINSERIMENTO = True
-EVOLUZIONE = True
+EVOLUZIONE = False
+
+NUMERO_CONIGLI = 75
+NUMERO_VOLPI = 25
+NUMERO_POZZANGHERE = 200
+NUMERO_CAROTE = 250
+
+PROBABILITA_CRESCITA_CAROTE = 0.0005     # 0.0005 crescita contenuta - 0.002 crescita abbondante
+QUANTITA_ACQUA = 3                      #default 3
 
 
 
@@ -45,6 +53,8 @@ stats_pos = ((WIDTH // 40) + 450, (HEIGHT // 40) - 20)
 data = {
     'evoluzione': [],
     'reinserimento': [],
+    'probabilita_riproduzione_carote': [],
+    'quantita_acqua_pozzanghera':[],
     'tempo': [],
     'stagione': [],
     'num_volpi': [],
@@ -262,8 +272,7 @@ class Animale():
                                                     self.compagno.soglia_fertilita))),
                                            percezione=random.randint((min(self.percezione, self.compagno.percezione)),
                                                                      (max(self.percezione,
-                                                                          self.compagno.percezione))) + random.randint(
-                                               -10, 10),
+                                                                          self.compagno.percezione))),
                                            velocita_camminata=random.randint(
                                                (min(self.velocita_camminata, self.compagno.velocita_camminata)),
                                                (max(self.velocita_camminata,
@@ -306,7 +315,7 @@ class Animale():
                                            velocita_camminata=random.randint(
                                                (min(self.velocita_camminata, self.compagno.velocita_camminata)),
                                                (max(self.velocita_camminata,
-                                                    self.compagno.velocita_camminata))) + random.randint(-20, 20),
+                                                    self.compagno.velocita_camminata))),
                                            velocita_corsa=random.randint((min(self.velocita_corsa, self.compagno.velocita_corsa)),
                                                                (max(self.velocita_corsa,
                                                                     self.compagno.velocita_corsa)))))
@@ -572,7 +581,7 @@ class Acqua():
         self.coord_int = self.coord.int_()
         self.colore = (0, 102, 255)
         self.nome = 'acqua'
-        self.quantita = 3
+        self.quantita = QUANTITA_ACQUA
 
     def esaurita(self):
         Animale.morte(self)
@@ -603,7 +612,9 @@ class Carota():
         Animale.morte(self)
 
     def Crescita(self):
-        if random.randint(1, 2000) == 1:
+
+        if random.random() < PROBABILITA_CRESCITA_CAROTE:
+            # print("Nuova carota")
             self.ambiente.lista_agenti_aggiunti.add(
                 self.__class__(self.ambiente, coord=self.coord + v2.Vector2D(random.randint(-50, 50), random.randint(-50, 50))))
 
@@ -611,7 +622,7 @@ class Carota():
         self.Crescita()
 
         #le carote possono marcire
-        self.eta += 0.003
+        self.eta += 0.002
         if self.eta > 2.5:
             self.colore = (150, 75, 0)
         if self.eta > 3:
@@ -624,7 +635,7 @@ class Carota():
 pixels_per_second = 10
 ambiente = a.Ambiente()
 
-for i in range(25):
+for i in range(NUMERO_VOLPI):
     ambiente.aggiungi_agente(Volpe(ambiente, coord=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT)),
                                    destinazione=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT)),
                                    eta=0.0,
@@ -636,7 +647,7 @@ for i in range(25):
                                    percezione=random.randint(15, 20),
                                    velocita_camminata=random.randint(40, 60),
                                    velocita_corsa=random.randint(65, 75)))
-for i in range(75):
+for i in range(NUMERO_CONIGLI):
     ambiente.aggiungi_agente(Coniglio(ambiente, coord=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT)),
                                       destinazione=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT)),
                                       eta=0.0,
@@ -799,6 +810,8 @@ while True:
     if frame_num >= 250:
         data['reinserimento'].append(REINSERIMENTO)
         data['evoluzione'].append(EVOLUZIONE)
+        data['probabilita_riproduzione_carote'].append(PROBABILITA_CRESCITA_CAROTE)
+        data['quantita_acqua_pozzanghera'].append(QUANTITA_ACQUA)
         data['tempo'].append(pygame.time.get_ticks() // 1000)
         data['stagione'].append(ambiente.stagione)
         data['num_volpi'].append(num_volpe)
@@ -967,6 +980,8 @@ while True:
 
         data['reinserimento'].append(REINSERIMENTO)
         data['evoluzione'].append(EVOLUZIONE)
+        data['probabilita_riproduzione_carote'].append(PROBABILITA_CRESCITA_CAROTE)
+        data['quantita_acqua_pozzanghera'].append(QUANTITA_ACQUA)
         data['tempo'].append(pygame.time.get_ticks() // 1000)
         data['stagione'].append(ambiente.stagione)
         data['num_volpi'].append(num_volpe)
@@ -1017,7 +1032,7 @@ while True:
         dataDF = dataDF.transpose()
         print(dataDF)
         dataDF.to_csv('Volpe-Coniglio.csv', sep=';')
-        pl.plot_and_save()
+        pl.plot_and_save(seed)
         exit()
 
 
