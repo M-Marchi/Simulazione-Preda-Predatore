@@ -6,8 +6,8 @@ import Vector2D as v2
 
 
 
-WIDTH = 1800
-HEIGHT = 900
+WIDTH = 1200
+HEIGHT = 800
 pygame.init()
 SCREEN_SIZE = (WIDTH, HEIGHT)
 
