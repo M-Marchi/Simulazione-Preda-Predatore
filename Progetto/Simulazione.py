@@ -42,6 +42,8 @@ screen = pygame.display.set_mode(SCREEN_SIZE, 0, 32)
 pygame.display.set_caption("Simulazione Ecosistema")
 font = pygame.font.SysFont("Arial", 18)
 
+ambiente = a.Ambiente()
+
 img_volpe = pygame.image.load('images/fox.png').convert_alpha()
 img_coniglio = pygame.image.load('images/rabbit.png').convert_alpha()
 
@@ -636,8 +638,7 @@ class Carota():
         pygame.draw.circle(screen, self.colore, (self.coord_int.x, self.coord_int.y), 2)
 
 
-pixels_per_second = 10
-ambiente = a.Ambiente()
+
 
 
 
@@ -701,6 +702,10 @@ def reintroduzione():
                      percezione=percezione_conigli,
                      velocita_camminata=velocita_camminata_conigli,
                      velocita_corsa=velocita_corsa_conigli))
+
+
+
+
 
 
 
@@ -798,15 +803,13 @@ while True:
                 ambiente.aggiungi_agente(Acqua(ambiente, coord=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT))))
 
 
-    #elif ambiente.giorno > 1.6:
-        #ambiente.giorno = 0
+
 
 
     conigli = [agente for agente in ambiente.agenti.values() if agente.nome == 'coniglio']
     volpi = [agente for agente in ambiente.agenti.values() if agente.nome == 'volpe']
 
-    # print(ambiente.giorno)
-    # print(ambiente.stagione)
+
     ambiente.process(tempo_passato_secondi)
     ambiente.render(screen)
 
