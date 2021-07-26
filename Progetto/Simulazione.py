@@ -18,7 +18,7 @@ random.seed(seed)
 # Settings simulazione:
 
 GRAFICA = False
-REINSERIMENTO = False
+REINSERIMENTO = True
 EVOLUZIONE = True
 
 NUMERO_CONIGLI = 75
@@ -28,10 +28,10 @@ NUMERO_CAROTE = 250
 
 
 # 0.0005 crescita contenuta - 0.002 crescita abbondante
-PROBABILITA_CRESCITA_CAROTE = 0.002
+PROBABILITA_CRESCITA_CAROTE = 0.0005
 
 #default 3
-QUANTITA_ACQUA = 10
+QUANTITA_ACQUA = 3
 
 
 
