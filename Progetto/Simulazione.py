@@ -17,17 +17,21 @@ random.seed(seed)
 
 # Settings simulazione:
 
-GRAFICA = True
-REINSERIMENTO = True
-EVOLUZIONE = False
+GRAFICA = False
+REINSERIMENTO = False
+EVOLUZIONE = True
 
 NUMERO_CONIGLI = 75
 NUMERO_VOLPI = 25
 NUMERO_POZZANGHERE = 200
 NUMERO_CAROTE = 250
 
-PROBABILITA_CRESCITA_CAROTE = 0.0005     # 0.0005 crescita contenuta - 0.002 crescita abbondante
-QUANTITA_ACQUA = 3                      #default 3
+
+# 0.0005 crescita contenuta - 0.002 crescita abbondante
+PROBABILITA_CRESCITA_CAROTE = 0.002
+
+#default 3
+QUANTITA_ACQUA = 10
 
 
 
@@ -635,34 +639,41 @@ class Carota():
 pixels_per_second = 10
 ambiente = a.Ambiente()
 
-for i in range(NUMERO_VOLPI):
-    ambiente.aggiungi_agente(Volpe(ambiente, coord=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT)),
-                                   destinazione=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT)),
-                                   eta=0.0,
-                                   soglia_fame=random.randint(200, 250),
-                                   soglia_morte_di_fame=random.randint(550, 650),
-                                   soglia_sete=random.randint(200, 250),
-                                   soglia_morte_di_sete=random.randint(550, 650),
-                                   soglia_fertilita=random.randint(500, 600),
-                                   percezione=random.randint(15, 20),
-                                   velocita_camminata=random.randint(40, 60),
-                                   velocita_corsa=random.randint(65, 75)))
-for i in range(NUMERO_CONIGLI):
-    ambiente.aggiungi_agente(Coniglio(ambiente, coord=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT)),
-                                      destinazione=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT)),
-                                      eta=0.0,
-                                      soglia_fame=random.randint(200, 250),
-                                      soglia_morte_di_fame=random.randint(500, 600),
-                                      soglia_sete=random.randint(200, 250),
-                                      soglia_morte_di_sete=random.randint(500, 600),
-                                      soglia_fertilita=random.randint(250, 300),
-                                      percezione=random.randint(15, 20),
-                                      velocita_camminata=random.randint(40, 60),
-                                      velocita_corsa=random.randint(65, 75)))
-for i in range(250):
-    ambiente.aggiungi_agente(Carota(ambiente, coord=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT))))
-for i in range(200):
-    ambiente.aggiungi_agente(Acqua(ambiente, coord=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT))))
+
+
+# inizializzazione agenti
+def introduzione():
+    for i in range(250):
+        ambiente.aggiungi_agente(Carota(ambiente, coord=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT))))
+    for i in range(200):
+        ambiente.aggiungi_agente(Acqua(ambiente, coord=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT))))
+
+
+    for i in range(NUMERO_VOLPI):
+        ambiente.aggiungi_agente(Volpe(ambiente, coord=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT)),
+                                       destinazione=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT)),
+                                       eta=0.0,
+                                       soglia_fame=random.randint(200, 250),
+                                       soglia_morte_di_fame=random.randint(550, 650),
+                                       soglia_sete=random.randint(200, 250),
+                                       soglia_morte_di_sete=random.randint(550, 650),
+                                       soglia_fertilita=random.randint(500, 600),
+                                       percezione=random.randint(15, 20),
+                                       velocita_camminata=random.randint(40, 60),
+                                       velocita_corsa=random.randint(65, 75)))
+    for i in range(NUMERO_CONIGLI):
+        ambiente.aggiungi_agente(Coniglio(ambiente, coord=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT)),
+                                          destinazione=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT)),
+                                          eta=0.0,
+                                          soglia_fame=random.randint(200, 250),
+                                          soglia_morte_di_fame=random.randint(500, 600),
+                                          soglia_sete=random.randint(200, 250),
+                                          soglia_morte_di_sete=random.randint(500, 600),
+                                          soglia_fertilita=random.randint(250, 300),
+                                          percezione=random.randint(15, 20),
+                                          velocita_camminata=random.randint(40, 60),
+                                          velocita_corsa=random.randint(65, 75)))
+
 
 def reintroduzione():
     for i in range(10):
@@ -694,11 +705,10 @@ def reintroduzione():
 
 
 contatore_frame = 0
-
-
-
-
 frame_num = 250
+
+introduzione()
+
 while True:
     for event in pygame.event.get():
         if event.type == QUIT:
