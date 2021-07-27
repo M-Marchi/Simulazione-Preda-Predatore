@@ -58,51 +58,8 @@ Il fine del lavoro è quello di valutare come, al variare di alcuni parametri qu
 
 
 \newpage
-
-\section{Stato dell'arte}
-\subsection{Sistemi complessi}
-In letteratura esistono svariate definizioni, più o meno formali, di sistema complesso. In via del tutto generale, possiamo definire un sistema complesso come un sistema altamente strutturato, dinamicamente in evoluzione nel corso del tempo, il cui funzionamento è spesso complesso da spiegare o comprendere e in cui si verificano spesso interazioni multiple tra differenti componenti del sistema stesso. Diverse sono le caratteristiche tipiche dei sistemi complessi: 
-\begin{itemize}
-    \item i sistemi complessi sono spesso formati da elementi in continua interazione. Spesso questi elementi prendono il nome di agenti;
-    \item la \textbf{non linearità}. Spesso emerge che nei sistemi complessi non esiste un rapporto lineare tra l'input e l'output.
-    \item Possibilità di evolvere ed adattarsi nel tempo. 
-    \item Robustezza e plasticità dei sistemi. 
-\end{itemize}
-Oltre ai sistemi complessi, possiamo definire altre due categorie di sistemi: i sistemi semplici e quelli complicati. La categoria dei sistemi semplici comprende quei sistemi le cui relazioni causa-effetto sono ben note e documentate, oltre che prevedibili e ripetitive. Si può affermare che i sistemi semplici sono sistemi noti e conosciuti. Ne è un esempio la bicicletta. Un sistema complicato invece, è un sistema molto simile dal punto di vista delle relazioni causa-effetto ai sistemi semplici; la differenza risiede nel fatto che i sistemi complicati sono a più ampia scala e richiedono expertise specializzate. Sono sistemi che potremmo definire conoscibili e ne sono esempi le macchine, i razzi spaziali, i treni e così via. Infine, i sistemi complessi si differenziano dalle altre due categorie di sistemi a causa del fatto che le relazioni causa-effetto possono essere apprese in retrospettiva, ma difficilmente risultano essere riproducibili o predicibili. Questa categoria di sistemi è analizzabile seguendo l'approccio della simulazione. Ne sono esempi gli organismi viventi, il sistema nervoso umano e, ovviamente, gli ecosistemi naturali che sono oggetto del progetto descritto in questo documento. 
-\subsection{Simulazione di sistemi complessi}
-Come già affermato precedentemente, i sistemi complessi sono difficili da studiare e analizzare con un approccio teorico, è quindi opportuno utilizzare un approccio basato sulla simulazione. I modelli e le simulazioni di vario tipo sono strumenti per rapportarsi con la realtà. Gli esseri umani hanno sfruttato i modelli e la simulazione per prendere decisioni, per meglio comprendere i fenomeni naturali, per validare teorie oppure per valutare l'impatto di un cambiamento. Anche migliaia di anni fa, costruzioni, macchine e navi venivano prima testati come modelli in scala ridotta prima di essere realizzati nella loro forma finale. Nel momento in cui gli scienziati identificano principi generalizzabili, essi costruiscono modelli, che vengono usati per simulare e investigare nuove possibilità che potrebbero condurre a nuove opportunità tecnologiche. I modelli possono presentarsi in varie forme: schemi, diagrammi, costrutti logici oppure sotto forma di software. I modelli realizzati con questo ultimo approccio permettono di realizzare una simulazione del comportamento dinamico del sistema in oggetto \cite{ModelingAndSimulation}.
-
-Gli scopi per cui si fa simulazione sono vari e possono essere riassunti nei seguenti punti:
-\begin{itemize}
-    \item Valutare piani e progetti operativi senza la necessità di metterli in atto nel mondo reale. Questo punto è molto importante perché attraverso la simulazione è possibile evitare di mettere in pratica un piano operativo per poi accorgersi che non può essere portato a termine in modo corretto. Questo permette di risparmiare risorse e fatica.
-    \item Valutare teorie e modelli. Questo significa che la simulazione permette di comprendere meglio il sistema che stiamo studiando, valutandone le relazioni di causa-effetto che lo fanno evolvere in modo dinamico.
-    \item Osservare un sistema che non è ancora stato realizzato nel mondo reale e che pertanto non è osservabile. Questa situazione si può verificare nel momento in cui il sistema è in via di sviluppo.
-\end{itemize}
-In estrema sintesi, è possibile definire la simulazione come la disciplina che consente di definire un modello della realtà che consente di valutare e prevedere lo svolgersi dinamico di una serie di eventi o processi susseguenti all'imposizione di certe condizioni da parte dell'analista o dell'utente \cite{WikiSimulazione}.
-
-Come per tutti gli strumenti scientifici, anche per fare simulazione non esiste un unico approccio. Il primo approccio usato per fare simulazione è quello macroscopico. Utilizzando questo approccio vengono specificati dei vincoli globali, rappresentati sotto forma di equazioni. Un esempio è il vincolo della conservazione della massa che impone che qualunque cosa succeda nel sistema la quantità di massa totale dovrà mantenersi costante nel tempo. Nei modelli macroscopici vengono stilate delle equazioni differenziali che indicano come variano le quantità aggregate nel corso del tempo. Si assume che gli individui siano tutti uguali e abbiano lo stesso comportamento e lo stesso atteggiamento. Lo svantaggio di questo approccio è che rende difficile catturare tutti gli aspetti della dinamica del gruppo di agenti che compongono il sistema. L'approccio macroscopico è particolarmente indicato per problemi di ottimizzazioni in contesti specifici. Per esempio, il metodo macroscopico potrebbe rivelarsi utile per simulare l'evacuazione di un edificio e per verificare se tutte le persone all'interno dell'edificio sono in grado di evacuare in meno di 10 minuti.
-Uno degli esempi più famosi di modelli di simulazione macroscopici è il modello di Lotka-Volterra, descritto \hyperref[sec:LV]{in una delle prossime sezioni}. 
-
-L'approccio alternativo prende il nome di simulazione basata sugli agenti. Con questa metodologia l'unità analitica è costituita dal singolo individuo (che prende appunto il nome di agente) e non più le variabili aggregate come nell'approccio macroscopico. Il vantaggio di questo approccio sta nel fatto che i risultati dovrebbero evidenziare esattamente le stesse dinamiche descritte dai modelli macroscopici, oltre ad altre informazioni aggiuntive relative, per esempio, all'aspetto spaziale. Per esempio, nel contesto di un ecosistema naturale, alcuni modelli microscopici mi permettono di comprendere con un buon livello di confidenza dove si collocano i predatori e quali percorsi tendono a seguire. L'aspetto negativo riguarda il fatto che per realizzare un modello microscopico è necessario conoscere alcuni aspetti aggiuntivi del sistema e degli agenti che lo compongono. Per esempio, sempre prendendo in considerazione il modello dell'ecosistema naturale, è necessario conoscere come sono fatti i predatori, quali sono le loro caratteristiche, come cacciano, quali bisogni hanno e per le prede conoscere di cosa si cibano, come scappano o si nascondono dai predatori e così via. 
-
-A prescindere dall'approccio che si usa, il ciclo di vita di un modello di simulazione è ben delineato. Infatti, per effettuare la corretta simulazione di un sistema complesso in generale si segue il ciclo di sviluppo riportato in figura \ref{figCicloSviluppo}.
-
-Come si vede dall'immagine, le fasi dello sviluppo di una simulazione di un sistema complesso sono le seguenti: 
-\begin{itemize}
-    \item Definizione di un sistema target di riferimento, derivante dal processo interdisciplinare di analisi del fenomeno che si vuole studiare attraverso la simulazione. 
-    \item Eseguire un'operazione di modellazione e progettazione di un modello concettuale e di un simulatore del sistema in esame. 
-    \item Esecuzione di simulazioni. Questo passaggio permette di acquisire una grande quantità di dati che risultano essere particolarmente utili nella fase successiva.
-    \item Analisi dei risultati e validazione. In quest'ultima fase si sfruttano i dati raccolti dalle simulazioni effettuate e li si confrontano con i dati reali collezionati all'inizio del ciclo per la realizzazione del sistema target. Se i risultati della simulazione coincidono con le dinamiche osservate nel sistema reale (ovvero se il ciclo commuta), è possibile sfruttare il modello realizzato per fini esplicativi oppure predittivi; viceversa se dal modello sviluppato si ottengono dati che non coincidono con le osservazioni raccolte è necessario ripetere il ciclo e adattare il modello, sistemandone alcuni aspetti. In caso il ciclo dovesse commutare non si può avere la certezza di aver colto tutti gli aspetti essenziali e rilevanti del mondo reale, è unicamente possibile affermare che le teorie generate dal modello non sono contraddette dalla simulazione. 
-\end{itemize}
-
-\begin{figure}
-    \centering
-    \includegraphics[scale = 0.6]{cicloSviluppoSimulazione.png}
-    \label{figCicloSviluppo}
-    \caption{Schema che rappresenta il ciclo di sviluppo di una simulazione di un sistema complesso}
-\end{figure}
-
-\subsection{Gli ecosistemi naturali}
+\section{Panoramica sugli ecosistemi naturali}
+\subsection{Cos'è un ecosistema naturale}
 Il termine ecosistema venne per la prima volta usato in una pubblicazione dall'ecologista inglese Arthur Tansley nel 1935.\cite{WikiEcosystem}
 Un ecosistema\cite{Vedantu}, come già accennato nelle precedentemente, può essere definito come una comunità dove esseri viventi di specie differenti coesistono nello stesso ambiente fisico e interagisco vicendevolmente in modo da sviluppare un ciclo di vita e facilitare il flusso di energia e nutrienti. 
 Due sono le componenti di un sistema di questo tipo: quella biotica e quella abiotica. La prima comprende piante, animali e altri organismi viventi. Elementi fisici quali temperatura, minerali, piogge e umidità definiscono la componente abiotica di un ecosistema. 
@@ -183,6 +140,50 @@ I principi generali su cui si basa la teoria della selezione naturale sono i seg
 Il processo di selezione naturale è un fattore che sta alla base del processo di adattamento delle specie e che quindi concorre, insieme alle mutazioni genetiche e alla deriva genetica, all'evoluzione delle stesse.
 
 La selezione naturale è anche alla base della della speciazione, ovvero quel processo che porta alla nascita di nuove specie. Questo fenomeno in genere si verifica quando le popolazioni della stessa specie sono divise da barriere geografiche e quindi vengono sottoposte a pressioni selettive differenti. Questo produce differenze nella loro struttura anatomica. Nel lungo periodo le differenze accumulate tra gli individui delle popolazioni diventano talmente grandi che essi non possono più accoppiarsi e quindi dalla stessa specie se ne originano di nuove. 
+
+\section{Stato dell'arte}
+\subsection{Sistemi complessi}
+In letteratura esistono svariate definizioni, più o meno formali, di sistema complesso. In via del tutto generale, possiamo definire un sistema complesso come un sistema altamente strutturato, dinamicamente in evoluzione nel corso del tempo, il cui funzionamento è spesso complesso da spiegare o comprendere e in cui si verificano spesso interazioni multiple tra differenti componenti del sistema stesso. Diverse sono le caratteristiche tipiche dei sistemi complessi: 
+\begin{itemize}
+    \item i sistemi complessi sono spesso formati da elementi in continua interazione. Spesso questi elementi prendono il nome di agenti;
+    \item la \textbf{non linearità}. Spesso emerge che nei sistemi complessi non esiste un rapporto lineare tra l'input e l'output.
+    \item Possibilità di evolvere ed adattarsi nel tempo. 
+    \item Robustezza e plasticità dei sistemi. 
+\end{itemize}
+Oltre ai sistemi complessi, possiamo definire altre due categorie di sistemi: i sistemi semplici e quelli complicati. La categoria dei sistemi semplici comprende quei sistemi le cui relazioni causa-effetto sono ben note e documentate, oltre che prevedibili e ripetitive. Si può affermare che i sistemi semplici sono sistemi noti e conosciuti. Ne è un esempio la bicicletta. Un sistema complicato invece, è un sistema molto simile dal punto di vista delle relazioni causa-effetto ai sistemi semplici; la differenza risiede nel fatto che i sistemi complicati sono a più ampia scala e richiedono expertise specializzate. Sono sistemi che potremmo definire conoscibili e ne sono esempi le macchine, i razzi spaziali, i treni e così via. Infine, i sistemi complessi si differenziano dalle altre due categorie di sistemi a causa del fatto che le relazioni causa-effetto possono essere apprese in retrospettiva, ma difficilmente risultano essere riproducibili o predicibili. Questa categoria di sistemi è analizzabile seguendo l'approccio della simulazione. Ne sono esempi gli organismi viventi, il sistema nervoso umano e, ovviamente, gli ecosistemi naturali che sono oggetto del progetto descritto in questo documento. 
+\subsection{Simulazione di sistemi complessi}
+Come già affermato precedentemente, i sistemi complessi sono difficili da studiare e analizzare con un approccio teorico, è quindi opportuno utilizzare un approccio basato sulla simulazione. I modelli e le simulazioni di vario tipo sono strumenti per rapportarsi con la realtà. Gli esseri umani hanno sfruttato i modelli e la simulazione per prendere decisioni, per meglio comprendere i fenomeni naturali, per validare teorie oppure per valutare l'impatto di un cambiamento. Anche migliaia di anni fa, costruzioni, macchine e navi venivano prima testati come modelli in scala ridotta prima di essere realizzati nella loro forma finale. Nel momento in cui gli scienziati identificano principi generalizzabili, essi costruiscono modelli, che vengono usati per simulare e investigare nuove possibilità che potrebbero condurre a nuove opportunità tecnologiche. I modelli possono presentarsi in varie forme: schemi, diagrammi, costrutti logici oppure sotto forma di software. I modelli realizzati con questo ultimo approccio permettono di realizzare una simulazione del comportamento dinamico del sistema in oggetto \cite{ModelingAndSimulation}.
+
+Gli scopi per cui si fa simulazione sono vari e possono essere riassunti nei seguenti punti:
+\begin{itemize}
+    \item Valutare piani e progetti operativi senza la necessità di metterli in atto nel mondo reale. Questo punto è molto importante perché attraverso la simulazione è possibile evitare di mettere in pratica un piano operativo per poi accorgersi che non può essere portato a termine in modo corretto. Questo permette di risparmiare risorse e fatica.
+    \item Valutare teorie e modelli. Questo significa che la simulazione permette di comprendere meglio il sistema che stiamo studiando, valutandone le relazioni di causa-effetto che lo fanno evolvere in modo dinamico.
+    \item Osservare un sistema che non è ancora stato realizzato nel mondo reale e che pertanto non è osservabile. Questa situazione si può verificare nel momento in cui il sistema è in via di sviluppo.
+\end{itemize}
+In estrema sintesi, è possibile definire la simulazione come la disciplina che consente di definire un modello della realtà che consente di valutare e prevedere lo svolgersi dinamico di una serie di eventi o processi susseguenti all'imposizione di certe condizioni da parte dell'analista o dell'utente \cite{WikiSimulazione}.
+
+Come per tutti gli strumenti scientifici, anche per fare simulazione non esiste un unico approccio. Il primo approccio usato per fare simulazione è quello macroscopico. Utilizzando questo approccio vengono specificati dei vincoli globali, rappresentati sotto forma di equazioni. Un esempio è il vincolo della conservazione della massa che impone che qualunque cosa succeda nel sistema la quantità di massa totale dovrà mantenersi costante nel tempo. Nei modelli macroscopici vengono stilate delle equazioni differenziali che indicano come variano le quantità aggregate nel corso del tempo. Si assume che gli individui siano tutti uguali e abbiano lo stesso comportamento e lo stesso atteggiamento. Lo svantaggio di questo approccio è che rende difficile catturare tutti gli aspetti della dinamica del gruppo di agenti che compongono il sistema. L'approccio macroscopico è particolarmente indicato per problemi di ottimizzazioni in contesti specifici. Per esempio, il metodo macroscopico potrebbe rivelarsi utile per simulare l'evacuazione di un edificio e per verificare se tutte le persone all'interno dell'edificio sono in grado di evacuare in meno di 10 minuti.
+Uno degli esempi più famosi di modelli di simulazione macroscopici è il modello di Lotka-Volterra, descritto \hyperref[sec:LV]{in una delle prossime sezioni}. 
+
+L'approccio alternativo prende il nome di simulazione basata sugli agenti. Con questa metodologia l'unità analitica è costituita dal singolo individuo (che prende appunto il nome di agente) e non più le variabili aggregate come nell'approccio macroscopico. Il vantaggio di questo approccio sta nel fatto che i risultati dovrebbero evidenziare esattamente le stesse dinamiche descritte dai modelli macroscopici, oltre ad altre informazioni aggiuntive relative, per esempio, all'aspetto spaziale. Per esempio, nel contesto di un ecosistema naturale, alcuni modelli microscopici mi permettono di comprendere con un buon livello di confidenza dove si collocano i predatori e quali percorsi tendono a seguire. L'aspetto negativo riguarda il fatto che per realizzare un modello microscopico è necessario conoscere alcuni aspetti aggiuntivi del sistema e degli agenti che lo compongono. Per esempio, sempre prendendo in considerazione il modello dell'ecosistema naturale, è necessario conoscere come sono fatti i predatori, quali sono le loro caratteristiche, come cacciano, quali bisogni hanno e per le prede conoscere di cosa si cibano, come scappano o si nascondono dai predatori e così via. 
+
+A prescindere dall'approccio che si usa, il ciclo di vita di un modello di simulazione è ben delineato. Infatti, per effettuare la corretta simulazione di un sistema complesso in generale si segue il ciclo di sviluppo riportato in figura \ref{figCicloSviluppo}.
+
+Come si vede dall'immagine, le fasi dello sviluppo di una simulazione di un sistema complesso sono le seguenti: 
+\begin{itemize}
+    \item Definizione di un sistema target di riferimento, derivante dal processo interdisciplinare di analisi del fenomeno che si vuole studiare attraverso la simulazione. 
+    \item Eseguire un'operazione di modellazione e progettazione di un modello concettuale e di un simulatore del sistema in esame. 
+    \item Esecuzione di simulazioni. Questo passaggio permette di acquisire una grande quantità di dati che risultano essere particolarmente utili nella fase successiva.
+    \item Analisi dei risultati e validazione. In quest'ultima fase si sfruttano i dati raccolti dalle simulazioni effettuate e li si confrontano con i dati reali collezionati all'inizio del ciclo per la realizzazione del sistema target. Se i risultati della simulazione coincidono con le dinamiche osservate nel sistema reale (ovvero se il ciclo commuta), è possibile sfruttare il modello realizzato per fini esplicativi oppure predittivi; viceversa se dal modello sviluppato si ottengono dati che non coincidono con le osservazioni raccolte è necessario ripetere il ciclo e adattare il modello, sistemandone alcuni aspetti. In caso il ciclo dovesse commutare non si può avere la certezza di aver colto tutti gli aspetti essenziali e rilevanti del mondo reale, è unicamente possibile affermare che le teorie generate dal modello non sono contraddette dalla simulazione. 
+\end{itemize}
+
+\begin{figure}
+    \centering
+    \includegraphics[scale = 0.6]{cicloSviluppoSimulazione.png}
+    \label{figCicloSviluppo}
+    \caption{Schema che rappresenta il ciclo di sviluppo di una simulazione di un sistema complesso}
+\end{figure}
+
 \subsection{Il modello Lotka-Volterra}
 \label{sec:LV}
 Il modello di Lotka-Volterra, noto anche come equazioni o modello preda-predatore, è il modello matematico più noto di analisi dei sistemi di tipo preda-predatore. Questo modello è stato proposto in modo indipendente dal matematico americano Alfred J. Lotka nel 1925 e dal fisico e matematico italiano Vito Volterra nel 1926. 
@@ -341,37 +342,37 @@ In particolare, i limiti di questi modelli sono riassumibili nei seguenti punti:
 
 
 \section{Obiettivo del progetto}
-L'obiettivo del progetto è stato quello di realizzare un modello di simulazione multi-agente di un ecosistema naturale. Come visto nella sezione precedente, i modelli di questo tipo presenti in letteratura sono piuttosto limitati in quanto semplificano eccessivamente la realtà che intendono simulare. L'obiettivo quindi è stato quello di eliminare le limitazioni descritte nella sezione precedente, realizzando un modello il cui ambiente fosse abitato da un gruppo di prede (i conigli) e un gruppo di predatori (le volpi). Dopo il processo di calibrazione dei parametri del modello si è optato per lo sviluppo di di tre versioni dello stesso. La prima versione, la più semplice, ha portato a risultati non del tutto soddisfacenti, per questo motivo si è deciso di affinare il modello facendo sì che un certo numero di animali (sia prede che predatori) venissero reintrodotti nell'ambiente con una certa frequenza. I risultati ottenuti con questa seconda versione sono risultati essere decisamente migliori e il modello decisamente più realistico. Infine, si è deciso di estendere ulteriormente il modello, introducendo la simulazione dell'evoluzione genetica degli animali che popolano l'ambiente. Per ciascuna delle tre varianti sono stati analizzati i risultati e sono stati confrontati con quelli delle altre versioni. 
+L'obiettivo del progetto è stato quello di realizzare un modello di simulazione multi-agente di un ecosistema naturale. Come visto nella sezione precedente, i modelli di questo tipo presenti in letteratura sono piuttosto limitati in quanto semplificano eccessivamente la realtà che intendono simulare. L'obiettivo quindi è stato quello di eliminare le limitazioni descritte nella sezione precedente, realizzando un modello il cui ambiente fosse abitato da un gruppo di prede (i conigli) e un gruppo di predatori (le volpi). Dopo il processo di calibrazione dei parametri del modello si è optato per lo sviluppo di di tre versioni dello stesso. La prima versione, la più semplice, ha portato a risultati non del tutto soddisfacenti, per questo motivo si è deciso di affinare il modello facendo sì che un certo numero di animali (sia prede che predatori) venissero reintrodotti nell'ambiente con una certa frequenza. I risultati ottenuti con questa seconda versione sono decisamente migliori e il modello notevolmente più realistico. Infine, si è deciso di estendere ulteriormente il modello, introducendo la simulazione dell'evoluzione genetica degli animali che popolano l'ambiente. L'obiettivo è stato quello di valutare tramite simulazione come l'evoluzione genetica permetta sia ai conigli che alle volpi di adattarsi alle condizioni ambientali. Per ciascuna delle tre varianti sono stati analizzati i risultati e sono stati confrontati con quelli delle altre versioni. 
 
 \section{Descrizione del modello}
 Come già detto precedentemente, il modello sviluppato è un sistema multi-agente, composto da quattro tipologie di agenti: i Conigli (ovvero le prede), le Volpi (ovvero i predatori), l'Acqua (ovvero le pozzanghere d'acqua attraverso le quali le prede e i predatori si dissetano) e le Carote (ovvero il cibo con cui i conigli si sfamano). In questa sezione vengono illustrati l'ambiente e le quattro tipologie di agenti, oltre alla loro implementazione e i parametri del modello, divisi in base all'agente a cui fanno riferimento. Inoltre, per ognuno di essi, viene illustrato il valore finale scelto in seguito alla fase di tuning dei parametri, con la quale si è cercato di rendere il modello conforme rispetto al fenomeno reale che si intende simulare. 
 \subsection{Ambiente}
-L'ambiente è modellato in modo tale che fosse \textbf{continuo} e non discreto. Nella realtà il mondo è ovviamente continuo, però spesso quando si sviluppa un modello di simulazione per eseguire una semplificazione lo si discretizza per esempio per mezzo di una griglia. Nel caso specifico si è scelto di realizzare l'ambiente in modo continuo per due motivi fondamentali. Il primo riguarda il fatto che, come già detto, l'ambiente in un contesto reale non è discreto ma è continuo. La seconda motivazione è di carattere operativo: lo strumento di simulazione che è stato adottato rende possibile la gestione di un ambiente continuo in modo piuttosto semplice senza introdurre troppe complicazioni e senza aumentare eccessivamente la complessità computazionale del progetto. 
+L'ambiente è modellato in modo tale che fosse \textbf{continuo} e non discreto. Nella realtà il mondo è ovviamente continuo, però spesso quando si sviluppa un modello di simulazione per eseguire una semplificazione lo si discretizza generalmente per mezzo di una griglia. Nel caso specifico si è scelto di realizzare l'ambiente in modo continuo per due motivi fondamentali. Il primo riguarda il fatto che, come già detto, l'ambiente in un contesto reale non è discreto ma è continuo. La seconda motivazione è di carattere operativo: lo strumento di simulazione che è stato adottato rende possibile la gestione di un ambiente continuo in modo piuttosto semplice senza introdurre troppe complicazioni e senza aumentare eccessivamente la complessità computazionale del progetto. 
 
-L'ambiente oltre ad essere continuo risulta essere (parzialmente) \textbf{inaccessibile}. Questo significa che ogni agente non può, in ogni istante di tempo, ottenere informazioni complete, precise e aggiornate relative allo stato dell'ambiente stesso. Infatti ogni volpe è in grado di conoscere esclusivamente le informazioni che la sua percezione le permette di ottenere. Questo significa che una colpe può sapere se c'è un coniglio, uno specchio d'acqua oppure un'altra volpe con cui accoppiarsi nelle vicinanze, ma non può conoscere (e non è nemmeno necessario) il fatto che nella posizione diametralmente opposta alla sua si trova un altro individuo della sua specie. 
+L'ambiente oltre ad essere continuo risulta essere (parzialmente) \textbf{inaccessibile}. Questo significa che ogni agente non può, in ogni istante di tempo, ottenere informazioni complete, precise e aggiornate relative allo stato dell'ambiente stesso. Infatti ogni volpe è in grado di conoscere esclusivamente le informazioni che la sua percezione le permette di ottenere. Questo significa che una volpe può sapere se c'è un coniglio, uno specchio d'acqua oppure un'altra volpe con cui accoppiarsi nelle vicinanze, ma non può conoscere (e non è nemmeno necessario) il fatto che nella posizione diametralmente opposta alla sua si trova un altro individuo della sua specie. 
 
 L'ambiente è, inoltre, \textbf{statico}: nella finestra temporale nella quale ogni agente compie la decisione relativa al comportamento che deve tenere l'ambiente non evolve. In altre parole, questo significa che non esistono fattori esterni che influenzano e modificano l'ambiente mentre ogni agente valuta l'opportuna azione da compiere. 
 
-L'ambiente è \textbf{deterministico}, ovvero ogni qualvolta un agente compie un'azione (per esempio una volpe decide di spostarsi verso una determinata posizione), è possibile considerare come certo l'avvenimento di tale azione. Questo però non è necessariamente vero per ciascuna azione, infatti alcune di esse risultano essere gestite tramite un processo regolato in modo stocastico. Questo implica che le azioni regolate da questi tipi di processi non necessariamente si verificheranno. 
+L'ambiente è \textbf{deterministico}, ovvero ogni qualvolta un agente compie un'azione (per esempio una volpe decide di spostarsi verso una determinata posizione) è possibile considerare come certo l'avvenimento di tale azione. Questo però non è necessariamente vero per ciascuna azione, infatti alcune di esse risultano essere gestite tramite un processo regolato in modo stocastico. Per questo motivo le azioni così gestite, posso avvenire con un certo livello di probabilità.
 
-Ulteriore caratteristica dell'ambiente è che esso risulta essere \textbf{episodico}. Episodico significa che ad ogni step temporale il comportamento di ogni agente è determinato in modo del tutto esclusivo dallo stato attuale del sistema. Gli agenti non sono dotati di memoria, attraverso la quale mantengono informazioni sulle azioni e gli stati passati dell'ambiente in base ai quali decidere l'azione da compiere. 
+Ulteriore caratteristica dell'ambiente è che esso risulta essere \textbf{episodico}. Episodico significa che ad ogni step temporale il comportamento di ogni agente è determinato considerando esclusivamente lo stato attuale del sistema. Gli agenti non sono dotati di memoria e non  mantengono traccia delle azioni precedenti. 
 
 \subsubsection{Implementazione}
 \begin{figure}[h!]
      \centering
      \includegraphics[scale = 0.7]{Ambiente.png}
-     \label{fig:ambienteUML}
      \caption{Diagramma della classe Ambiente}
+     \label{fig:ambienteUML}
 \end{figure}
 
-L'ambiente è stato implementato attraverso un'apposita classe, le cui specifiche sono mostrate in figura \ref{fig:ambienteUML}. Gli attributi di questa classe includono la lista di agenti presenti nell'ambiente, la lista di agenti rimossi dall'ambiente dopo la loro morte, la lista di agenti aggiunti in seguito alla loro nascita, una variabile di tipo stringa denominata \emph{stagione} che indica in quale stagione si trova attualmente la simulazione, una variabile di tipo floating point number denominata \emph{giorno} che permette di tenere traccia del passare del tempo durante la simulazione, una variabile denominata \emph{background} utile in fase di render dell'ambiente, una tupla denominata \emph{colore\_erba} che permette di specificare il colore con cui l'ambiente deve essere colorato in ciascuna stagione e infine, una serie di variabili intere che permettono di raccogliere i dati della simulazione in corso.
+L'ambiente è stato implementato attraverso un'apposita classe, le cui specifiche sono mostrate in figura \ref{fig:ambienteUML}. Gli attributi di questa classe includono la lista di agenti presenti nell'ambiente, la lista di agenti rimossi dall'ambiente dopo la loro morte, la lista di agenti aggiunti in seguito alla loro nascita, una variabile di tipo stringa denominata \emph{stagione} che indica in quale stagione si trova attualmente la simulazione, una variabile di tipo floating point denominata \emph{giorno} che permette di tenere traccia del passare del tempo durante la simulazione, una variabile denominata \emph{background} utile in fase di render dell'ambiente, una tupla denominata \emph{colore\_erba} che permette di specificare il colore con cui l'ambiente deve essere colorato in ciascuna stagione e infine, una serie di variabili intere che permettono di raccogliere i dati della simulazione in corso.
 
-L'ambiente può eseguire le seguenti operazioni: aggiungere un agente quando esso nasce, rimuovere un'agente quando muore, restituire l'oggetto che rappresenta uno specifico agente, dato il suo identificativo, eseguire il render dell'ambiente, portare avanti la simulazione in ogni istante temporale (metodo render()) e restituire l'agente che si trova più vicino all'agente specificato. 
-In particolare, il metodo \emph{process} si occupa di far proseguire ad ogni agente la propria esecuzione in ogni istante temporale, di includere nella simulazione gli agenti contenuti nella lista denominata \emph{lista\_agenti\_aggiunti}, di rimuovere dalla simulazione gli agenti contenuti nella lista chiamata \emph{lista\_agenti\_rimossi} e infine, di pulire le due liste. Il metodo \emph{agente\_vicino} invece, viene richiamato dagli agenti di tipo Volpe o Coniglio nel momento in cui essi devono cercare una preda da cacciare oppure un compagno con cui accoppiarsi. Il metodo prende in input le coordinate attuali dell'agente, il raggio in cui cercare (ovvero la loro percezione) e il tipo di agente da cercare. Il metodo quindi restituisce l'oggetto che fa riferimento all'agente più vicino del tipo specificato se ne è presente uno nel raggio specificato, altrimenti non restituisce nulla.    
+L'ambiente può eseguire le seguenti operazioni: aggiungere un agente quando esso nasce, rimuovere un'agente quando muore, restituire l'oggetto che rappresenta uno specifico agente dato il suo identificativo, eseguire il render dell'ambiente, portare avanti la simulazione in ogni istante temporale (metodo process()) e ricercare l'agente che si trova più vicino ad un altro agente passato come parametro al metodo \emph{agente\_vicino}. 
+Più nello specifico, il metodo \emph{process} si occupa di mettere in atto il comportamento di ogni agente in ciascun istante temporale, di aggiungere alla simulazione gli agenti contenuti nella lista denominata \emph{lista\_agenti\_aggiunti}, di rimuovere dalla simulazione gli agenti contenuti nella lista chiamata \emph{lista\_agenti\_rimossi} e infine, di pulire le due liste. Il metodo \emph{agente\_vicino} invece, viene richiamato dagli agenti di tipo Volpe o Coniglio nel momento in cui essi devono cercare una preda da cacciare oppure un compagno con cui accoppiarsi. Il metodo prende in input le coordinate attuali dell'agente, il raggio in cui cercare (ovvero la loro percezione) e il tipo di agente da cercare. Il metodo quindi restituisce l'oggetto che fa riferimento all'agente più vicino del tipo specificato se ne è presente uno nel raggio specificato, altrimenti non restituisce nulla.    
 \paragraph{Parametri}
 I parametri relativi all'ambiente sono i seguenti: 
 \begin{itemize}
-    \item \textbf{Dimensione dell'ambiente}. Questo parametro indica la dimensione in larghezza e in lunghezza espressa in pixel della finestra nel quale viene eseguito il render grafico dell'ambiente. Si è constatato in seguito a diverse prove, che la dimensione dell'ambiente in rapporto al numero di agenti che lo popolano non deve essere troppo elevata. La ragione di questo è relativa al fatto che se l'ambiente fosse troppo grande, allora gli agenti si disperderebbero al suo interno. Ciononostante è altresì essenziale che la dimensione dell'ambiente non sia eccessivamente ridotta in proporzione al numero di agenti al suo interno e alla loro velocità di movimento. 
+    \item \textbf{Dimensione dell'ambiente}. Questo parametro indica la dimensione in altezza e in lunghezza espressa in pixel della finestra nel quale viene eseguito il render grafico dell'ambiente. In seguito a diverse prove, si è constatato che la dimensione dell'ambiente in rapporto al numero di agenti che lo popolano non deve essere troppo elevata. La ragione di questo è relativa al fatto che se l'ambiente fosse troppo grande, allora gli agenti si disperderebbero al suo interno. Ciononostante è altresì essenziale che la dimensione dell'ambiente non sia eccessivamente ridotta in proporzione al numero di agenti al suo interno e alla loro velocità di movimento. 
     \item \textbf{Probabilità pioggia} in primavera, estate, autunno e inverno. Questo parametro indica per ciascuna delle quattro stagioni con quale probabilità in ogni istante di tempo pioverà.
     \item \textbf{Quantità nuove pozzanghere} in primavera, estate, autunno e inverno. Indica per ogni stagione, in caso di pioggia quante pozzanghere verranno aggiunte all'ambiente. 
     \item \textbf{Probabilità aggiunta carote} in primavera, estate, autunno e inverno. Indica, per ogni stagione, la probabilità che in ogni istante di tempo venga aggiunta una carota in una posizione casuale nell'ambiente. 
@@ -449,13 +450,13 @@ Gli attributi della classe Acqua sono i seguenti:
 \begin{itemize}
     \item \textbf{ambiente}: è un riferimento all'oggetto Ambiente. 
     \item \textbf{coord}. Si tratta di un vettore in due dimensioni che rappresenta le coordinate dove si trova la rispettiva pozzanghera d'acqua nell'ambiente. 
-    \item \textbf{coord\_int}. Analogo a coord, solo che $coord_int$ è espresso tramite numeri interi e non decimali. 
+    \item \textbf{coord\_int}. Analogo a coord, solo che \emph{coord\_int} è espresso tramite numeri interi e non decimali. 
     \item \textbf{colore}. Indica il colore con cui dovrà essere eseguito il render degli agenti di questo tipo.
     \item \textbf{nome}. Si tratta di una stringa con la quale vengono identificati gli agenti appartenenti a questa categoria. 
     \item \textbf{quantità}. Indica la dimensione della pozzanghera. Può assumere valori interi compresi tra 0 e 3. 3 significa che la pozzanghera può essere sfruttata ancora da 3 conigli e/o volpi prima di essere eliminata dall'ambiente, 0 significa che la pozzanghera deve essere rimossa dall'ambiente, in quanto è stata già sfruttata 3 volte dalle volpi e dai conigli e quindi risulta essere esaurita. 
 \end{itemize}
 
-I metodi \emph{esaurita} e \emph{render} permettono rispettivamente di chiedere all'ambiente l'eliminazione dell'agente nel momento in cui la pozzanghera è esaurita e di eseguire il render grafico degli agenti che rappresentano le pozzanghere nell'ambiente. 
+I metodi \emph{esaurita} e \emph{render} permettono rispettivamente di chiedere all'ambiente l'eliminazione dell'agente e di eseguire il render grafico degli agenti che rappresentano le pozzanghere nell'ambiente. 
 
 
 
@@ -474,7 +475,7 @@ Questa tipologia di agente rappresenta ciò di cui i conigli si cibano per poter
 \begin{itemize}
     \item \textbf{ambiente}. Si tratta di un riferimento all'oggetto della classe Ambiente. 
     \item \textbf{coord}. Si tratta di un vettore in due dimensioni, che rappresenta le coordinate che identificano la locazione all'interno dell'ambiente della carota. 
-    \item \textbf{coord\_int}. Analogo a coord, la differenza risiede nel fatto che $coord_int$ è espresso tramite numeri interi e non decimali. 
+    \item \textbf{coord\_int}. Analogo a coord, la differenza risiede nel fatto che \emph{coord\_int} è espresso tramite numeri interi e non decimali. 
     \item \textbf{colore}. Indica il colore con cui dovrà essere eseguito il render degli agenti di questo tipo.
     \item \textbf{nome}. Si tratta di una stringa, utile per identificare gli agenti che appartengono a questa categoria. 
     \item \textbf{eta}. Indica da quanto tempo la carota è presente nell'ambiente. Una volta che la carota è presente nell'ambiente per troppo tempo verrà rimossa, in quanto marcita. 
@@ -483,8 +484,14 @@ Questa tipologia di agente rappresenta ciò di cui i conigli si cibano per poter
 I metodi della classe Carota sono i seguenti:
 \begin{itemize}
     \item \textbf{morte}. Questo metodo viene invocato ogni qualvolta una carota viene mangiata da un coniglio, oppure marcisce. Esso chiede all'ambiente di rimuovere il rispettivo agente. 
-    \item \textbf{crescita}. Questo metodo permette con una probabilità pari a 0.05\% di far nascere una nuova carota nelle vicinanze (in un raggio di 50 pixel).
-    \item \textbf{process}. Questo metodo, richiamato in ogni istante temporale della simulazione, esegue le seguenti operazioni: richiama il metodo crescita, descritto nel punto precedente, incrementa l'attributo \emph{eta} dell'agente di 0.03, nel caso in cui l'età dovesse aver raggiunto un valore superiore a 2.5 cambia il colore con cui verrà eseguito il render della carota in modo da mostrare graficamente che la essa sta per marcire e infine, nel caso in cui la carota dovesse avere un'età superiore a 3, chiede all'ambiente di rimuovere l'agente. 
+    \item \textbf{crescita}. Questo metodo permette con una probabilità pari a 0.05\% di far nascere una nuova carota nelle vicinanze dell'agente che lo richiama (in un raggio di 50 pixel).
+    \item \textbf{process}. Questo metodo, richiamato in ogni istante temporale della simulazione, esegue le seguenti operazioni: 
+    \begin{itemize}
+        \item richiama il metodo \emph{crescita}, descritto nel punto precedente;
+        \item incrementa l'attributo \emph{eta} dell'agente di 0.03;
+        \item nel caso in cui l'età della carota dovesse aver raggiunto un valore superiore a 2.5 cambia il colore con cui essa viene mostrata in modo da evidenziare che essa sta per marcire e quindi per sta per essere rimossa dalla simulazione;
+        \item nel caso in cui la carota dovesse avere un'età superiore a 3, chiede all'ambiente di rimuovere l'agente. 
+    \end{itemize}
     \item \textbf{render}. Questo metodo permette di eseguire il render grafico dell'agente nella corretta posizione dell'ambiente. 
 \end{itemize}
 \subsubsection{Coniglio e Volpe}
@@ -494,33 +501,41 @@ Gli agenti di tipo \emph{Coniglio} rappresentano le prede dell'ecosistema natura
 \begin{figure}[h!]
      \centering
      \includegraphics[scale = 0.7]{Animale.png}
-     \label{fig:ConiglioVolpeUML}
      \caption{Diagrammi delle classi Coniglio e Volpe}
+     \label{fig:ConiglioVolpeUML}
 \end{figure}
 Gli attributi relativi agli agenti Coniglio e Volpe sono i seguenti: 
 \begin{itemize}
     \item \textbf{età}. Indica l'età dell'agente. In ogni istante temporale questo valore viene incrementato di 0.03. Conigli e Volpi di età superiore a 4 o inferiore a 0.5 hanno percezione e velocità di corsa dimezzata rispetto a quella degli animali adulti. Inoltre Conigli e Volpi con età inferiore a 0.5 non possono accoppiarsi. 
-    \item \textbf{percezione}. Questo attributo indica il raggio di percezione dell'agente. Un valore alto indica che l'agente può vedere e sentire predatori da grande distanza, viceversa un valore basso sta a significare che l'agente può vedere e percepire la presenza di altri agenti (quali pozze d'acqua, carote o volpi) solo nel momento in cui si trovano a distanze brevi rispetto al punto in cui esso si trova. 
+    \item \textbf{percezione}. Questo attributo indica il raggio di percezione dell'agente. Un valore alto indica che l'agente può vedere e sentire predatori da grande distanza, viceversa un valore basso sta a significare che l'agente può vedere e percepire la presenza di altri agenti (quali pozze d'acqua, carote o volpi) solo nel momento in cui si trovano a distanze ridotte rispetto al punto in cui esso si trova. 
     \item \textbf{ambiente}. Si tratta di un riferimento all'oggetto della classe Ambiente, precedentemente descritta. 
     \item \textbf{nome}. Si tratta di una stringa che indica il tipo di agente. 
     \item \textbf{coord}.Esso è un vettore in due dimensioni che identifica la posizione dell'agente in ogni istante temporale. 
     \item \textbf{coord\_int}. Indica la posizione attuale dell'agente tramite coordinate intere.
-    \item \textbf{destinazione}. Indica la destinazione dell'agente. Inizialmente ogni coniglio e ogni volpe ha una destinazione che viene fissata in modo casuale. Successivamente, nel momento in cui l'agente percepisce la necessità di accoppiarsi e trova un compagno nelle vicinanze con cui accoppiarsi, questo parametro viene impostato in modo tale che la destinazione sia pari alle coordinate della posizione dell'altro agente. Analogamente, quando un animale ha necessità di dissetarsi e vede una pozzanghera nell'intorno della propria percezione, allora la destinazione viene impostata in modo tale che sia pari alle coordinate della pozzanghera. Infine, avviene lo stesso anche quando l'agente ha necessità di cibarsi e nota la presenza di una carota sempre nell'intorno della propria percezione. 
-    Viceversa, nel caso in cui l'agente non ha ne la necessità di bere, ne quella di mangiare ne quella di accoppiarsi, allora la sua destinazione verrà impostata in modo casuale in modo tale che esso si muova liberamente nell'ambiente. 
+    \item \textbf{destinazione}. Indica la destinazione dell'agente. Inizialmente ogni coniglio e ogni volpe hanno una destinazione che viene fissata in modo casuale. Successivamente, nel momento in cui l'agente percepisce la necessità di accoppiarsi e trova un compagno nelle vicinanze con cui accoppiarsi, questo parametro viene impostato in modo tale che la destinazione sia pari alle coordinate della posizione dell'altro agente. Analogamente, quando un animale ha necessità di dissetarsi e vede una pozzanghera nell'intorno della propria percezione, allora la destinazione viene impostata in modo tale che sia pari alle coordinate della pozzanghera. Infine, avviene lo stesso anche quando l'agente ha necessità di cibarsi e nota la presenza di una preda (che sarà un coniglio nel caso delle volpi e una carota nel caso dei conigli) sempre nell'intorno della propria percezione. 
+    Invece nel caso in cui l'agente non ha né la necessità di bere, né quella di mangiare né quella di accoppiarsi, allora la sua destinazione verrà impostata in modo casuale in modo tale che esso si muova liberamente nell'ambiente. 
     \item \textbf{fame}. Si tratta di un valore booleano che indica se l'agente ha necessità di sfamarsi o meno. Inizialmente il valore è pari a False e nel momento in cui il numero di step temporali passati senza che abbia mangiato diventa superiore al parametro \emph{soglia\_fame} il suo valore viene impostato a True. 
-    \item \textbf{sete}. Anche in questo caso si tratta di un valore booleano. Esso indica se l'agente necessita o meno di bere. Anche in questo caso, esso inizialmente è impostato a False e appena il tempo passato dall'agente senza bere diventa superiore al valore di 
+    \item \textbf{sete}. Anche in questo caso si tratta di un valore booleano. Esso indica se l'agente necessita o meno di bere. Anche in questo caso, esso inizialmente è impostato a False e appena il tempo passato dall'agente senza bere diventa superiore al valore del parametro \emph{soglia\_disidratazione} il suo valore viene impostato a True. 
     \item \textbf{fertilità}. Si tratta di un valore booleano che indica se l'agente sente il bisogno e ha la necessità di riprodursi oppure no. 
-    \item \textbf{gravidanza}. Anch'esso è un parametro di tipo booleano e indica se l'agente risulta essere gravido o meno. Nel primo caso, dopo un certo periodo di gestazione, esso darà alla luce i cuccioli. 
-    \item \textbf{preda}. Fa riferimento ad un agente di tipo Carota nel caso dei conigli e un agente di tipo coniglio nel caso delle volpi e rappresenta la preda identificata dall'agente per potersi cibare. 
+    \item \textbf{gravidanza}. Anch'esso è un parametro di tipo booleano e indica se l'agente risulta essere in attesa di una cucciolata o meno. Nel primo caso, dopo un certo periodo di gestazione, esso darà alla luce i cuccioli. 
+    \item \textbf{preda}. Fa riferimento ad un agente di tipo \emph{Carota} nel caso dei conigli e un agente di tipo \emph{Coniglio} nel caso delle volpi e rappresenta la preda identificata dall'agente per potersi cibare. 
     \item \textbf{preda\_nome}. Si tratta di una stringa che identifica il tipo di preda: coniglio per le volpi e carota per i conigli. 
     \item \textbf{compagno}. Esso rappresenta un agente con cui l'animale ha intenzione di accoppiarsi. 
     \item \textbf{tempo\_digiuno}. Si tratta di un parametro che indica il tempo passato dall'ultimo istante in cui l'agente si è cibato.
-    \item \textbf{tempo\_disidratazione}. Indica da quanti istanti temporali l'agente non si è abbeverato.
+    \item \textbf{tempo\_disidratazione}. Indica quanti istanti temporali sono trascorsi dall'ultima volta che l'agente si è abbeverato in una pozzanghera. 
     \item \textbf{tempo\_periodo\_fertile}. Indica quanto tempo è passato dall'ultimo accoppiamento dell'animale. 
-    \item \textbf{tempo\_gestazione}. Indica il tempo che deve passare dal momento in cui un agente è stato ingravidato e il momento in cui esso da alla luce i cuccioli. 
+    \item \textbf{tempo\_gestazione}. Indica il tempo che deve passare dal momento in cui l'agente si è accoppiato con un altro agente e il momento in cui esso da alla luce i cuccioli. 
     \item \textbf{pozzanghera}. Indica un agente di tipo Acqua che l'agente ha avvistato per potersi dissetare.
-    \item \textbf{color}. Indica il colore con cui eseguire il render dell'agente.
-    \item \textbf{img}. Indica l'immagine con cui eseguire il render dell'agente. 
+    \item \textbf{color}. Indica il colore con cui eseguire il render dell'agente. Questo attributo viene considerato solo nel momento in cui la simulazione viene lanciata con l'attributo GRAFICA impostato a False. Vedere la sezione \ref{sec:codice} per maggiori dettagli in tal senso. 
+    \item \textbf{img}. Indica l'immagine con cui eseguire il render dell'agente. Questo attributo viene considerato solo per le simulazioni lanciate con l'attributo GRAFICA settato a True. Fare riferimento anche in questo caso alla sezione \ref{sec:codice} per maggiori dettagli in tal senso. 
+    \item \textbf{soglia\_fame}. Si tratta di una soglia, superata la quale l'agente inizia ad avere necessità di cibarsi (di carote nel caso dei conigli e di conigli nel caso delle volpi).
+    \item \textbf{soglia\_morte\_di\_fame}. Si tratta della soglia superata la quale l'agente morirà di fame. In altre parole, significa che se un coniglio o una volpe rimangono senza mangiare per un numero di istanti temporali superiore a tale soglia, allora esso morirà di fame.
+    \item \textbf{soglia\_sete}. Indica la soglia oltre la quale l'agente inizia a percepire la necessita di dissetarsi. 
+    \item \textbf{soglia\_morte\_di\_sete}. Così come per la fame, anche questa soglia è rappresentativa del fatto che se un agente passa un numero di time step senza bere superiore rispetto a questa soglia,  esso morirà di sete e verrà rimosso dall'ambiente. 
+    \item \textbf{soglia\_fertilità}. Indica la soglia oltre la quale l'agente sentirà la necessità di accoppiarsi. Anche in questo caso, una volta passati un numero di time step senza che il coniglio si sia accoppiato, superiore a questa soglia, l'agente inizierà a sentire la necessita di accoppiarsi e quindi di riprodursi.
+    \item \textbf{velocità\_camminata}. Questo parametro indica la velocità con cui si sposta l'agente in condizioni normali, ovvero quando non è inseguito da un predatore, non è alla ricerca di un compagno e non è alla ricerca di cibo con cui sfamarsi.  
+    \item \textbf{velocità\_corsa}. Questo parametro invece, indica la velocità con cui l'agente si muove nelle seguenti condizioni: l'agente ha trovato un compagno con cui accoppiarsi, l'agente ha trovato una pozzanghera da cui abbeverarsi oppure l'animale ha trovato una preda di cui cibarsi nell'area circolare avente come centro la propria posizione e come raggio il valore della sua percezione.
+    \item \textbf{eta\_morte\_vecchiaia}. Questo parametro indica a quale età le volpi e i conigli muoiono di vecchiaia.
 \end{itemize}
 
 \paragraph{comportamento degli agenti Volpe e Coniglio}
@@ -587,7 +602,7 @@ Un esempio di questo comportamento è mostrato in figura \ref{fig:EsempioEvoluzi
      \caption{Il diagramma in figura mostra un esempio concreto di come viene gestita l'ereditarietà dei caratteri nel modello.}
 \end{figure}
 
-Invece, il metodo \emph{morte} viene richiamato quando un animale muore di vecchiaia, muore di sete, muore di fame oppure muore cacciato da un predatore (ovviamente quest'ultimo caso è valevole solo per i conigli che vengono cacciati dalle volpi). La prima situazione si verifica quando il valore \emph{eta} dell'agente supera il valore 4 nel caso dei conigli e il valore 5 nel caso delle volpi. Una volpe o un coniglio, invece muore di sete quando il valore \emph{tempo\_disidratazione} diventa maggiore del parametro \emph{soglia\_morte\_di\_sete}. Analogamente, un animale muore di fame quando il valore \emph{tempo\_digiuno} diventa superiore al parametro \emph{soglia\_morte\_di\_fame}. In tutti questi casi viene richiamato il metodo \emph{morte} che si occupa di aggiungere nell'attributo \emph{lista\_agenti\_rimossi} dell'ambiente l'agente. Sarà poi compito dell'ambiente occuparsi della rimozione vera e propria dell'agente dall'ambiente. 
+Invece, il metodo \emph{morte} viene richiamato quando un animale muore di vecchiaia, muore di sete, muore di fame oppure muore cacciato da un predatore (ovviamente quest'ultimo caso è valevole solo per i conigli che vengono cacciati dalle volpi). La prima situazione si verifica quando il valore \emph{eta} dell'agente supera il valore 4.5 nel caso dei conigli e il valore 5 nel caso delle volpi. Una volpe o un coniglio, invece muore di sete quando il valore \emph{tempo\_disidratazione} diventa maggiore del parametro \emph{soglia\_morte\_di\_sete}. Analogamente, un animale muore di fame quando il valore \emph{tempo\_digiuno} diventa superiore al parametro \emph{soglia\_morte\_di\_fame}. In tutti questi casi viene richiamato il metodo \emph{morte} che si occupa di aggiungere l'agente alla lista di agenti da rimuovere. Sarà poi compito dell'ambiente occuparsi della rimozione vera e propria dell'agente dall'ambiente. 
 
 Il metodo \emph{cammina}, con l'ausilio del metodo \emph{movimento}, permette di spostare l'agente verso la propria destinazione con velocità pari a quella indicata nel parametro \emph{velocita\_camminata}. 
 
@@ -601,8 +616,9 @@ Infine, il metodo \emph{process} si occupa del coordinamento di tutte le operazi
     \item far muovere l'agente
 \end{itemize}
 
-In ultimo luogo, il metodo render viene richiamato per eseguire il render grafico dell'agente all'interno dell'ambiente.
+In ultimo luogo, il metodo \emph{render} viene richiamato per eseguire il render grafico dell'agente all'interno dell'ambiente.
 
+\begin{comment}
 \paragraph{parametri}
 I parametri del modello relativi agli agenti di tipo Coniglio e Volpe sono i seguenti: 
 \begin{itemize}
@@ -615,12 +631,12 @@ I parametri del modello relativi agli agenti di tipo Coniglio e Volpe sono i seg
     \item \textbf{velocità\_corsa}. Questo parametro invece, indica la velocità con cui l'agente si muove nelle seguenti condizioni: l'agente ha trovato un compagno con cui accoppiarsi, l'agente ha trovato una pozzanghera da cui abbeverarsi oppure l'animale ha trovato una carota di cui cibarsi nell'area circolare avente come centro la propria posizione e come raggio il valore della sua percezione.
     \item \textbf{eta\_morte\_vecchiaia}. Questo parametro indica a quale età le volpi e i conigli muoiono di vecchiaia.
 \end{itemize}
-
+\end{comment}
 \paragraph{Tuning dei parametri}
 \label{sec:tuningAnimali}
 Nella tabella sottostante viene esposto il valore con cui sono stati settati i parametri descritti nel paragrafo precedente.
 
-\begin{table}[h!]
+\begin{table}[]
 \centering
 \begin{tabular}{l|cc}
 \multicolumn{1}{c|}{Parametro} & Volpe          & Coniglio      \\ \hline
@@ -635,6 +651,9 @@ velocita\_corsa                & rand(65;75)    & rand(65;75)   \\
 eta\_morte\_vecchiaia          & 5              & 4.5
 \end{tabular}
 \end{table}
+
+
+
 
 \begin{comment}
 \subsection{Implementazione del comportamento degli agenti}
@@ -704,8 +723,9 @@ ogni qualvolta nasce un cucciolo i parametri \emph{soglia\_fame}, \emph{soglia\_
 Dove $y$ è il parametro ereditato dal cucciolo e $x_1, x_2$ sono i rispettivi parametri dei due genitori. Invece, $y_1$ è un offset appositamente scelto per ognuno degli otto parametri. Un valore grande implica che i cambiamenti genetici, anche nel breve periodo, siano più ampi, mentre se viene scelto un valore basso i cambiamenti genetici, almeno nel breve periodo,  risultano essere piuttosto contenuti. 
 \end{comment}
 
-\newpage
+\clearpage
 \section{Ambiente di sviluppo e Codice}
+\label{sec:codice}
 Al fine di realizzare il progetto di simulazione, si è deciso di utilizzare il linguaggio di programmazione python, sfruttando la libreria pygame per realizzare l'interfaccia grafica. Pygame, come descritto nel sito ufficiale\cite{PyGame}, è un modulo python pensato per lo sviluppo di videogiochi che aggiunge funzionalità alla libreria multi-piattaforma SDL. Il suo utilizzo non è limitato esclusivamente allo sviluppo di videogame, ma anche per realizzare simulazioni multi-agente come nel caso del progetto corrente. Dal lato dello sviluppo si è suddiviso il codice in diversi moduli, per garantirne una migliore chiarezza e flusso di esecuzione, e si sono utilizzate diverse librerie:
 \begin{itemize}
     \item \textit{\textbf{random}} per la gestione della simulazione è stato fatto un ampio utilizzo della generazione di valori pseudocasuali, attraverso questa libreria ed in particolare del metodo $randint(int_1, int_2)$, per ricreare al meglio la variabilità e l'entropia di un sistema complesso quale un ecosistema, memorizzando ad ogni esecuzione il \textbf{seed} per poterla rieseguire.
