@@ -7,9 +7,10 @@
 \usepackage{mathtools}
 \usepackage{booktabs}
 \usepackage{comment}
+\usepackage{array}
 
 
-\usepackage[backend=biber]{biblatex}
+\usepackage[backend=biber, sorting=none]{biblatex}
 \addbibresource{bibliografia.bib}
 
 
@@ -86,8 +87,8 @@ In natura, le volpi rosse possono raggiungere l'età di 12 anni.
 \begin{figure}[h]
     \centering
     \includegraphics[scale = 0.3]{ArealeDellaVolpe.png}
-    \label{figArealeVolpe}
     \caption{Areale della volpe. Le zone in verde indicano le aree dove la volpe è nativa, quelle blu dove è introdotta e quello in arancione dove la presenza della volpe è dubbia. }
+    \label{figArealeVolpe}
 \end{figure}
 
 Osservazioni sul campo\cite{RedFox} suggeriscono che le volpi siano miopi; possono attraversare la vegetazione senza incidenti, ma si avvicineranno agli oggetti fermi entro pochi metri a meno che un altro senso (come l'udito o l'olfatto) non le avvertano del pericolo o l'oggetto si muova. Huw Lloyd, nel proprio libro intitolato The red fox \cite{Zimen1980}, ha presentato alcuni diagrammi del campo visivo della volpe e, sulla base di questi disegni, è risultato che le volpi hanno un campo visivo di circa 260 gradi, con un punto cieco che copre circa 100 gradi direttamente dietro la loro testa e un sovrapposizione dei campi degli occhi destro e sinistro di circa 40 gradi. Il grado di sovrapposizione viene chiamato visione binoculare e consente agli animali di giudicare le distanze.
@@ -106,8 +107,8 @@ Il coniglio selvatico\cite{WikiConiglio} europeo(Oryctolagus cuniculus) è un ma
 \begin{figure}[h]
     \centering
     \includegraphics[scale = 1]{ArealeDelConiglioSelvatico.jpeg}
-    \label{figArealeConiglio}
     \caption{Areale del coniglio selvatico.}
+    \label{figArealeConiglio}
 \end{figure}
 
 Il coniglio selvatico predilige ambienti aperti, con clima secco e mite, ad altitudine non troppo elevata: il suolo dev'essere soffice o sabbioso, in modo da permettere all'animale di scavarsi la tana. Misura fino a 45 cm di lunghezza, per un peso che raggiunge i 2,5 kg: i maschi sono generalmente più grossi e robusti delle femmine. Si tratta di animali principalmente notturni e fortemente gregari, che possono vivere in colonie di grandezza direttamente proporzionale alla disponibilità di cibo. Una colonia tipo è composta da una decina di individui, senza distinzione di sesso. 
@@ -163,7 +164,7 @@ Gli scopi per cui si fa simulazione sono vari e possono essere riassunti nei seg
 In estrema sintesi, è possibile definire la simulazione come la disciplina che consente di definire un modello della realtà che consente di valutare e prevedere lo svolgersi dinamico di una serie di eventi o processi susseguenti all'imposizione di certe condizioni da parte dell'analista o dell'utente \cite{WikiSimulazione}.
 
 Come per tutti gli strumenti scientifici, anche per fare simulazione non esiste un unico approccio. Il primo approccio usato per fare simulazione è quello macroscopico. Utilizzando questo approccio vengono specificati dei vincoli globali, rappresentati sotto forma di equazioni. Un esempio è il vincolo della conservazione della massa che impone che qualunque cosa succeda nel sistema la quantità di massa totale dovrà mantenersi costante nel tempo. Nei modelli macroscopici vengono stilate delle equazioni differenziali che indicano come variano le quantità aggregate nel corso del tempo. Si assume che gli individui siano tutti uguali e abbiano lo stesso comportamento e lo stesso atteggiamento. Lo svantaggio di questo approccio è che rende difficile catturare tutti gli aspetti della dinamica del gruppo di agenti che compongono il sistema. L'approccio macroscopico è particolarmente indicato per problemi di ottimizzazioni in contesti specifici. Per esempio, il metodo macroscopico potrebbe rivelarsi utile per simulare l'evacuazione di un edificio e per verificare se tutte le persone all'interno dell'edificio sono in grado di evacuare in meno di 10 minuti.
-Uno degli esempi più famosi di modelli di simulazione macroscopici è il modello di Lotka-Volterra, descritto \hyperref[sec:LV]{in una delle prossime sezioni}. 
+Uno degli esempi più famosi di modelli di simulazione macroscopici è il modello di Lotka-Volterra, descritto nella sezione \ref{sec:LV}. 
 
 L'approccio alternativo prende il nome di simulazione basata sugli agenti. Con questa metodologia l'unità analitica è costituita dal singolo individuo (che prende appunto il nome di agente) e non più le variabili aggregate come nell'approccio macroscopico. Il vantaggio di questo approccio sta nel fatto che i risultati dovrebbero evidenziare esattamente le stesse dinamiche descritte dai modelli macroscopici, oltre ad altre informazioni aggiuntive relative, per esempio, all'aspetto spaziale. Per esempio, nel contesto di un ecosistema naturale, alcuni modelli microscopici mi permettono di comprendere con un buon livello di confidenza dove si collocano i predatori e quali percorsi tendono a seguire. L'aspetto negativo riguarda il fatto che per realizzare un modello microscopico è necessario conoscere alcuni aspetti aggiuntivi del sistema e degli agenti che lo compongono. Per esempio, sempre prendendo in considerazione il modello dell'ecosistema naturale, è necessario conoscere come sono fatti i predatori, quali sono le loro caratteristiche, come cacciano, quali bisogni hanno e per le prede conoscere di cosa si cibano, come scappano o si nascondono dai predatori e così via. 
 
@@ -180,8 +181,8 @@ Come si vede dall'immagine, le fasi dello sviluppo di una simulazione di un sist
 \begin{figure}
     \centering
     \includegraphics[scale = 0.6]{cicloSviluppoSimulazione.png}
-    \label{figCicloSviluppo}
     \caption{Schema che rappresenta il ciclo di sviluppo di una simulazione di un sistema complesso}
+    \label{figCicloSviluppo}
 \end{figure}
 
 \subsection{Il modello Lotka-Volterra}
@@ -236,8 +237,8 @@ La soluzione a tale equazione è
 \begin{figure}[h]
     \centering
     \includegraphics[scale = 1]{plotSoloPrede.PNG}
-    \label{figPlotLotkaVolterraSoloPrede}
     \caption{Grafico della funzione \eqref{eqn:soloPrede} fissati i parametri x(0) e $\alpha$ rispettivamente a 3 e 2}
+    \label{figPlotLotkaVolterraSoloPrede}
 \end{figure}
 
 \noindent Studiando invece, il caso specifico in cui il sistema è abitato esclusivamente da predatori, il sistema di equazioni differenziali si riduce, anche in questo caso, ad una sola equazione che assume la seguente forma: 
@@ -259,8 +260,8 @@ Risolvendo l'equazione, otteniamo il seguente risultato:
 \begin{figure}[h]
     \centering
     \includegraphics[scale = 1]{plotSoloPredatori.PNG}
-    \label{figPlotLotkaVolterraSoloPredatori}
     \caption{Grafico della funzione \eqref{eqn:soloPredatori} fissati i parametri y(0) e $\gamma$ rispettivamente a 3 e 2}
+    \label{figPlotLotkaVolterraSoloPredatori}
 \end{figure}
 
 Il modello Lotka-Volterra generale, descritto dal sistema \ref{modelloGenerale} presente il seguente andamento: 
@@ -278,8 +279,8 @@ Le soluzioni al sistema di equazioni non possiedono una espressione semplice in 
 \begin{figure}[h]
     \centering
     \includegraphics[scale = 0.7]{risultatoLotkaVolterra.PNG}
-    \label{fig:AndamentoLotkaVolterra}
     \caption{Andamento del sistema Lotka-Volterra}
+    \label{fig:AndamentoLotkaVolterra}
 \end{figure}
 
 
@@ -290,7 +291,7 @@ In questa sezione viene presentata una panoramica di alcuni dei modelli di simul
 Al termine delle descrizione dei modelli, vengono messi in evidenza i punti di carenza di questi modelli. L'obiettivo del progetto è quello di superarli e quindi realizzare un modello di simulazione più realistico rispetto a quelli presenti in letteratura.
 
 \subsubsection{Modello preda-predatore agent based di Physics of Risk}
-Il primo modello di simulazione di un ecosistema naturale che verrà presentato è quello disponibile al seguente link \url{https://rf.mokslasplius.lt/agent-based-prey-predator-model/}.
+Il primo modello di simulazione di un ecosistema naturale che verrà presentato è quello disponibile al seguente link \href{https://rf.mokslasplius.lt/agent-based-prey-predator-model/}{Physics of Risk}.
 
 Si tratta di un semplice modello realizzato sotto forma di applet HTML. Si tratta di un modello il cui ambiente è modellato in modo discreto, ogni preda è rappresentata da una cella colorata di bianco e ogni predatore è rappresentato come una cella colorata di nero. Il movimento è gestito in modo tale che l'agente che si muove verso il limite sinistro dell'ambiente, una volta oltrepassato, si troverà nella parte destra dell'ambiente. In modo del tutto analogo viene gestito il movimento verso l'alto e verso il basso. Ad ogni istante di tempo viene prelevata una cella in modo casuale dalla griglia. Se essa risulta essere vuota, allora non succede nulla, viceversa se è occupata da un agente allora viene presa una cella random da quelle adiacenti (non viene specificato quale tipo di vicinato viene preso in considerazione). Prendendo in considerazione le due celle selezionate, ad ogni time step vengono applicate le seguenti regole\cite{PhysicsofRisk}:
 \begin{itemize}
@@ -311,8 +312,8 @@ Netlogo propone due varianti dello stesso modello. La prima, più semplice, vien
 \begin{figure}[h]
     \centering
     \includegraphics[scale = 0.5]{modelloNetLogo.png}
-    \label{fig:ModelloNetlogo}
     \caption{La figura mostra il modello "Wolf Sheep predation" della libreria Netlogo}
+    \label{fig:ModelloNetlogo}
 \end{figure}
 
 Oltre alle varianti appena descritte, in letteratura esistono svariati modelli di simulazione di un ecosistema naturale composto da prede e predatori realizzati in Netlogo. Gran parte di essi non si differenziano molto dai modelli standard della libreria di Netlogo. In questa sezione viene presentato quello proposto dai due ricercatori Wilensky e Rand\cite{WilenskyRand} le cui principali caratteristiche sono le seguenti: 
@@ -384,42 +385,40 @@ I parametri relativi all'ambiente sono i seguenti:
 \paragraph{Tuning dei parametri}
 \label{sec:tuningAmbiente}
 Di seguito viene esposto il valore con cui sono stati settati i parametri descritti nel paragrafo precedente.
+\vspace{13pt}
 \begin{table}[h!]
 \centering
-\begin{tabular}{@{}lll@{}}
-\toprule
-                         & Larghezza (pixel) & Altezza (pixel) \\ \midrule
-Dimensione dell'ambiente & 1200      & 800      
-\end{tabular}
+{\renewcommand\arraystretch{1.6}
+\begin{tabular}{l|cc}
+ & \textbf{Larghezza (pixel)} & \textbf{Altezza (pixel)} \\ \hline
+\textbf{Dimensione dell'ambiente} & 1200      & 800      
+\end{tabular}}
 \end{table}
 
-\vspace{5pt}
-
 \begin{table}[h!]
 \centering
+{\renewcommand\arraystretch{1.9}
 \begin{tabular}{l|cccc}
-                          & Volpe & Coniglio & Acqua & Carota \\ \hline
-Numero iniziale di agenti & 25    & 75       & 200   & 250   
-\end{tabular}
+& \textbf{Volpe} & \textbf{Coniglio} & \textbf{Acqua} & \textbf{Carota} \\ \hline
+\textbf{Numero iniziale di agenti} & 25    & 75       & 200   & 250   
+\end{tabular}}
 \end{table}
 
 \begin{table}[h!]
 \centering
-\begin{tabular}{p{0.4\textwidth}|cccc}
-& \multicolumn{4}{c}{Stagione} \\   
+{\renewcommand\arraystretch{1.6}
+\begin{tabular}{p{0.28\textwidth}|cccc}
+& \multicolumn{4}{c}{\textbf{Stagione}} \\   
 \hline
-Parametro & \multicolumn{1}{l}{Primavera} & \multicolumn {1}{l}{Estate} & \multicolumn{1}{l}{Autunno} & \multicolumn{1}{l}{Inverno} \\
+\textbf{Parametro} & \multicolumn{1}{l}{Primavera} & \multicolumn {1}{l}{Estate} & \multicolumn{1}{l}{Autunno} & \multicolumn{1}{l}{Inverno} \\
 \hline
 Probabilità pioggia  & 0.285\%  & 0.1\%  & 0.5\% & 0.4\% \\
 Quantità nuove pozzanghere & rand(0,10) & rand(0,50) & rand(0,10) & rand(0,10) \\
 Probabilità aggiunta carote & 33\% & 20\% & 10\% & 20\% \\
 Durata stagioni & 500 & 500 & 500 & 500 \\
-Probabilità ridimensionamento pozzanghere & -  & 1  & - & -                          
-\end{tabular}
+Probabilità ridimensionamento pozzanghere & -  & 1  & - & -    
+\end{tabular}}
 \end{table}
-
-
-
 
 
 %L'ambiente è stato implementato in modo tale che dovesse eseguire le seguenti operazioni: 
@@ -442,8 +441,8 @@ Questo agente è il più semplice insieme all'agente \emph{Carota} e rappresenta
 \begin{figure}[h!]
      \centering
      \includegraphics[scale = 0.7]{Acqua.png}
-     \label{fig:acquaUML}
      \caption{Diagramma della classe Acqua}
+     \label{fig:acquaUML}
 \end{figure}
 
 Gli attributi della classe Acqua sono i seguenti:
@@ -468,8 +467,8 @@ Questa tipologia di agente rappresenta ciò di cui i conigli si cibano per poter
 \begin{figure}[h!]
      \centering
      \includegraphics[scale = 0.7]{Carota.png}
-     \label{fig:carotaUML}
      \caption{Diagramma della classe Carota}
+     \label{fig:carotaUML}
 \end{figure}
  Gli attributi degli agenti di tipo Carota sono i seguenti: 
 \begin{itemize}
@@ -546,8 +545,8 @@ La gestione dei bisogni primari avviene come mostrato in figura \ref{fig:diagram
 \begin{figure}
      \centering
      \includegraphics[scale = 0.7]{diagramma_comportamentale.png}
-     \label{fig:diagrammaComportamentale}
      \caption{Il diagramma in figura mostra il comportamento degli agenti di tipo Volpe e di tipo Coniglio ad ogni iterazione.}
+     \label{fig:diagrammaComportamentale}
 \end{figure}
 Come si vede in tale immagine, per prima cosa si valuta se l'agente è morto di fame o di sete e nel caso viene richiamato il metodo \emph{morte} descritto in seguito.  Successivamente si valuta se l'agente ha una delle tre necessità. Per far ciò per prima cosa viene considerato il tempo passato dall'ultima volta che l'animale si è cibato (valore memorizzato nella variabile \emph{tempo\_digiuno}) e il valore del tempo trascorso dall'ultimo istante in cui l'animale si è dissetato (memorizzato nella variabile \emph{tempo\_disidratazione}). Se il primo dei due valori è maggiore del valore di \emph{soglia\_fame} e del valore della variabile \emph{tempo\_disidratazione}, allora il valore della variabile booleana \emph{fame} viene settato a True. In seguito, si valuta se il tempo trascorso dall'ultima volta che l'animale si è dissetato è maggiore del valore di \emph{soglia\_sete} e del valore che indica il tempo trascorso dall'ultimo momento in cui l'animale si è sfamato. In caso affermativo allora il valore della variabile booleana \emph{sete} viene settato a True. Infine, se il tempo trascorso dall'ultima volta che l'animale si è cibato è minore del valore \emph{soglia\_fame} e il tempo trascorso dall'ultima volta che l'animale si è dissetato è minore di \emph{soglia\_sete} e il tempo trascorso dall'ultima volta che l'animale si è accoppiato (memorizzato nella variabile \emph{tempo\_periodo\_fertile}) è maggiore del valore assunto dal parametro \emph{soglia\_fertilità}, allora il valore della variabile booleana \emph{fertilita} viene settato a True. 
 
@@ -557,8 +556,8 @@ Il metodo \emph{caccia} permette di attivare la procedura denominata in modo ana
 \begin{figure}
      \centering
      \includegraphics[scale = 0.7]{Caccia.png}
-     \label{fig:diagrammaCaccia}
      \caption{Il diagramma in figura mostra come si comportano i conigli e le volpi quando hanno la necessità di cibarsi}
+     \label{fig:diagrammaCaccia}
 \end{figure}
 Come visibile nella figura \ref{fig:diagrammaCaccia}, l'agente per prima cosa cerca se c'è una preda nell'area circolare avente come centro la posizione attuale dell'agente e come raggio la sua percezione. Si noti che per i cuccioli e per gli anziani (ovvero quelle volpi e quei conigli che hanno età inferiore a 0.5 o superiore a 4) la loro percezione viene dimezzata. Se l'agente non trova una preda (una carota nel caso dei conigli, un coniglio nel caso delle volpi), allora esso camminerà verso un punto posizionato in modo casuale nell'ambiente e al prossimo istante temporale la procedura verrà ripetuta dall'inizio. 
 Viceversa, nel caso in cui l'agente dovesse trovare una preda nei dintorni, allora l'ambiente comunica all'agente se la preda è ancora viva oppure no. Quest'ultima valutazione si rende utile per evitare il presentarsi di alcuni conflitti che occorrerebbero nel momento in cui un agente ha trovato una preda, ma prima che esso possa raggiungerla, un altro agente se ne ciba rendendola non più disponibile per il primo agente.
@@ -568,8 +567,8 @@ Il metodo \emph{dissetarsi} permette di dare inizio alla procedura denominata \e
 \begin{figure}
      \centering
      \includegraphics[scale = 0.7]{Sete.png}
-     \label{fig:diagrammaBevi}
      \caption{Il diagramma in figura mostra come si comportano i conigli e le volpi quando hanno la necessità di dissetarsi}
+     \label{fig:diagrammaBevi}
 \end{figure}
 Questa procedura permette sia ai conigli che alle volpi di cercare una pozzanghera d'acqua per soddisfare la propria sete. Essa prevede in primo luogo che l'agente cerchi una pozzanghera nell'area circolare avente come centro la posizione attuale dell'agente e come raggio la percezione dell'agente stesso. Si noti che anche in questa situazione valgono le considerazioni di cui sopra: i cuccioli (età minore di 0.5) e gli anziani (età superiore a 4) hanno valori di percezione e velocità dimezzate rispetto a quelle degli adulti. Se l'ambiente comunica all'agente che non esiste una pozzanghera nei dintorni, allora l'agente si muove con destinazione casuale nell'ambiente e dal prossimo istante temporale la procedura viene riapplicata dall'inizio. Viceversa, nel caso in cui l'ambiente comunica all'agente che esiste una pozzanghera nelle vicinanze, allora l'agente inizia a correre verso la posizione della pozzanghera. In ogni istante temporale l'ambiente comunica all'agente se la pozzanghera è ancora presente nell'ambiente o meno (potrebbe accadere che altri agenti nel frattempo si sono diretti verso la stessa direzione e abbiano esaurito la pozzanghera). In caso negativo l'agente si dirige camminando verso una destinazione casuale e nel successivo istante temporale ripete la procedura dall'inizio. Se invece l'ambiente comunica all'agente che la pozzanghera non è stata esaurita da altri agenti, allora esso continua la corsa verso di essa. Questo ciclo si ripete fino a quando la distanza tra la pozzanghera e l'agente risulta essere inferiore a 5 pixel. In questa situazione l'agente si disseta, quindi il valore dell'attributo \emph{sete} diventa False, viene diminuita di una unità la dimensione della pozzanghera (che inizialmente ha una dimensione pari a 3) e l'attributo \emph{tempo\_disidratazione} dell'agente viene impostato con un valore pari a zero. 
 
@@ -577,8 +576,8 @@ Il metodo \emph{cerca\_compagno} permette di dare inizio alla procedura denomina
 \begin{figure}
      \centering
      \includegraphics[scale = 0.7]{Cerca_Compagno.PNG}
-     \label{fig:diagrammaAccoppiamento}
      \caption{Il diagramma in figura mostra come si comportano i conigli e le volpi quando hanno la necessità di accoppiarsi}
+     \label{fig:diagrammaAccoppiamento}
 \end{figure}
 Per prima cosa ogni agente che ha la necessità di accoppiarsi chiede all'ambiente se ci sono altri agenti dello stesso tipo e con età maggiore di 0.5 (i cuccioli non si possono accoppiare) nell'area circolare centrata nella posizione attuale dell'agente e di raggio pari alla percezione dello stesso.
 In caso negativo l'agente si muove verso una direzione casuale nell'ambiente e dall'istante di tempo successivo riprende dall'inizio l'esecuzione della procedura. Viceversa, in caso affermativo l'ambiente comunica la posizione del candidato compagno più vicino. L'agente inizia a correre verso la posizione comunicatagli dall'ambiente e in ogni istante temporale chiede all'ambiente se il compagno è ancora vivo. In caso negativo esso si sposta verso una destinazione casuale per poi ripetere l'intera procedura. Se invece, l'ambiente comunica che il compagno è ancora vivo, allora l'agente continua la corsa verso di esso. Questa operazione viene continuamente ripetuta in ogni istante temporale fino a quando la distanza tra i due agenti risulta essere inferiore a 5 pixel. In questo caso l'accoppiamento vero e proprio può avere luogo, richiamando il metodo \emph{accoppiamento}. 
@@ -598,8 +597,8 @@ Un esempio di questo comportamento è mostrato in figura \ref{fig:EsempioEvoluzi
 \begin{figure}[h!]
      \centering
      \includegraphics[scale = 0.8]{Accoppiamento_evoluzione.png}
-     \label{fig:EsempioEvoluzione}
      \caption{Il diagramma in figura mostra un esempio concreto di come viene gestita l'ereditarietà dei caratteri nel modello.}
+     \label{fig:EsempioEvoluzione}
 \end{figure}
 
 Invece, il metodo \emph{morte} viene richiamato quando un animale muore di vecchiaia, muore di sete, muore di fame oppure muore cacciato da un predatore (ovviamente quest'ultimo caso è valevole solo per i conigli che vengono cacciati dalle volpi). La prima situazione si verifica quando il valore \emph{eta} dell'agente supera il valore 4.5 nel caso dei conigli e il valore 5 nel caso delle volpi. Una volpe o un coniglio, invece muore di sete quando il valore \emph{tempo\_disidratazione} diventa maggiore del parametro \emph{soglia\_morte\_di\_sete}. Analogamente, un animale muore di fame quando il valore \emph{tempo\_digiuno} diventa superiore al parametro \emph{soglia\_morte\_di\_fame}. In tutti questi casi viene richiamato il metodo \emph{morte} che si occupa di aggiungere l'agente alla lista di agenti da rimuovere. Sarà poi compito dell'ambiente occuparsi della rimozione vera e propria dell'agente dall'ambiente. 
@@ -636,10 +635,11 @@ I parametri del modello relativi agli agenti di tipo Coniglio e Volpe sono i seg
 \label{sec:tuningAnimali}
 Nella tabella sottostante viene esposto il valore con cui sono stati settati i parametri descritti nel paragrafo precedente.
 
-\begin{table}[]
+\begin{table}[hb]
 \centering
+{\renewcommand\arraystretch{1.6}
 \begin{tabular}{l|cc}
-\multicolumn{1}{c|}{Parametro} & Volpe          & Coniglio      \\ \hline
+\multicolumn{1}{c|}{\textbf{Parametro}} & \textbf{Volpe}   & \textbf{Coniglio} \\ \hline
 soglia\_fame                   & rand(200; 250) & rand(200;250) \\
 soglia\_morte\_di\_fame        & rand(550;650)  & rand(500;600) \\
 soglia\_sete                   & rand(200;250)  & rand(200;250) \\
@@ -649,7 +649,7 @@ percezione                     & rand(15;20)    & rand(15;20)   \\
 velocita\_camminata            & rand(40;60)    & rand(40;60)   \\
 velocita\_corsa                & rand(65;75)    & rand(65;75)   \\
 eta\_morte\_vecchiaia          & 5              & 4.5
-\end{tabular}
+\end{tabular}}
 \end{table}
 
 
@@ -670,8 +670,8 @@ In seguito a tali valutazioni, se nessuna delle tre variabili \emph{fame}, \emph
 \begin{figure}
      \centering
      \includegraphics[scale = 0.7]{diagramma_comportamentale.png}
-     \label{fig:diagrammaComportamentale}
      \caption{Il diagramma in figura mostra il comportamento degli agenti di tipo Volpe e di tipo Coniglio ad ogni iterazione.}
+     \label{fig:diagrammaComportamentale}
 \end{figure}
 
 \subsubsection{Procedura Caccia}
@@ -684,8 +684,8 @@ Nel caso in cui la preda non dovesse essere più presente nell'ambiente, allora 
 \begin{figure}
      \centering
      \includegraphics[scale = 0.7]{Caccia.png}
-     \label{fig:diagrammaCaccia}
      \caption{Il diagramma in figura mostra come si comportano i conigli e le volpi quando hanno la necessità di cibarsi}
+     \label{fig:diagrammaCaccia}
 \end{figure}
 
 \subsubsection{Procedura Bevi}
@@ -694,8 +694,8 @@ L'operazione denominata \emph{Bevi} è stata implementata come descritto nella f
 \begin{figure}
      \centering
      \includegraphics[scale = 0.7]{Sete.png}
-     \label{fig:diagrammaBevi}
      \caption{Il diagramma in figura mostra come si comportano i conigli e le volpi quando hanno la necessità di dissetarsi}
+     \label{fig:diagrammaBevi}
 \end{figure}
 La procedura prevede in primo luogo che l'agente cerchi una pozzanghera nell'area circolare avente come centro la posizione attuale dell'agente e come raggio la percezione dell'agente stesso. Si noti che anche in questa situazione valgono le considerazioni di cui sopra: i cuccioli (età minore di 0.5) e gli anziani (età superiore a 4) hanno valori di percezione e velocità dimezzate rispetto a quelle degli adulti. Se l'ambiente comunica all'agente che non esiste una pozzanghera nei dintorni, allora l'agente si muove con destinazione casuale nell'ambiente e dal prossimo istante temporale ripeterà il ciclo di valutazioni descritte precedentemente e mostrate nella figura \ref{fig:diagrammaComportamentale}. Viceversa, nel caso in cui l'ambiente comunica all'agente che esiste una pozzanghera nelle vicinanze, allora l'agente inizia a correre verso la posizione della pozzanghera. In ogni istante temporale l'ambiente comunica all'agente se la pozzanghera è ancora presente nell'ambiente o meno (potrebbe accadere che altri agenti nel frattempo si sono diretti verso la stessa direzione e abbiano esaurito la pozzanghera). In caso negativo l'agente si dirige camminando verso una destinazione casuale e nel successivo istante temporale ripete la procedura dall'inizio. Se invece l'ambiente comunica all'agente che la pozzanghera non è stata esaurita da altri agenti, allora esso continua la corsa verso di essa. Questo ciclo si ripete fino a quando la distanza tra la pozzanghera e l'agente risulta essere inferiore a 5 pixel. In questa situazione l'agente si disseta, quindi il valore dell'attributo \emph{sete} diventa False, viene diminuita di una unità la dimensione della pozzanghera (che inizialmente ha una dimensione pari a 3) e l'attributo \emph{tempo\_disidratazione} dell'agente che identifica il tempo trascorso dall'ultima volta che si è abbeverato viene impostato con un valore pari a zero. 
 
@@ -705,8 +705,8 @@ La procedura di ricerca di un compagno, di accoppiamento e di riproduzione viene
 \begin{figure}
      \centering
      \includegraphics[scale = 0.7]{Cerca_Compagno.PNG}
-     \label{fig:diagrammaAccoppiamento}
      \caption{Il diagramma in figura mostra come si comportano i conigli e le volpi quando hanno la necessità di accoppiarsi}
+     \label{fig:diagrammaAccoppiamento}
 \end{figure}
 Per prima cosa ogni agente che ha la necessità di accoppiarsi chiede all'ambiente se ci sono altri agenti dello stesso tipo e con età maggiore di 0.5 (i cuccioli non si possono accoppiare) nell'area circolare centrata nella posizione attuale dell'agente e di raggio pari alla percezione dello stesso.
 In caso negativo l'agente si muove verso una direzione casuale nell'ambiente e riprende l'esecuzione delle operazioni descritte nella figura \ref{fig:diagrammaComportamentale}. Viceversa, in caso affermativo l'ambiente comunica la posizione del candidato compagno più vicino. L'agente inizia a correre verso la posizione comunicatagli dall'ambiente e in ogni istante temporale chiede all'ambiente se il compagno è ancora vivo. In caso negativo esso si sposta verso una destinazione casuale per poi ripetere l'intera procedura. Se invece, l'ambiente comunica che il compagno è ancora vivo, allora l'agente continua la corsa verso di esso. Questa operazione viene continuamente ripetuta in ogni istante temporale fino a quando la distanza tra i due agenti risulta essere inferiore a 5 pixel. In questo caso l'accoppiamento può avere luogo. 
