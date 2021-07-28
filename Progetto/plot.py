@@ -389,6 +389,6 @@ def plot_and_save(seed):
     plt.savefig(path+'conigli-carote.png')
     # plt.show()
 
-    path = path+str(seed)+'.csv'
+
     print(path)
     df.to_csv(path+str(seed)+'.csv', sep=';')
