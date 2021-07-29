@@ -18,8 +18,8 @@ random.seed(seed)
 # Settings simulazione:
 
 GRAFICA = False
-REINSERIMENTO = False
-EVOLUZIONE = False
+REINSERIMENTO = True
+EVOLUZIONE = True
 
 NUMERO_CONIGLI = 75
 NUMERO_VOLPI = 25
