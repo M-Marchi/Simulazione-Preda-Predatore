@@ -8,6 +8,8 @@
 \usepackage{booktabs}
 \usepackage{comment}
 \usepackage{array}
+\usepackage{caption}
+\usepackage{subcaption}
 
 
 \usepackage[backend=biber, sorting=none]{biblatex}
@@ -745,8 +747,8 @@ Il codice, separato in vari moduli, è così suddiviso: \begin{itemize}
         \item \textbf{EVOLUZIONE:} se a \textit{True} nella riproduzione si sommerà un offset casuale ai parametri degli agenti per andare a studiare il meccanismo di selezione evolutiva dei geni, se a \textit{False} la riproduzione genererà animali con parametri ereditati dai genitori senza possibilità di mutamento.
         \item \textbf{REINSERIMENTO:} se a \textit{True} ogni cambio di stagione verranno reinseriti alcuni animali, se a \textit{False} non ci sarà reinserimento. Utile per andare a studiare l'ambiente come sistema chiuso o aperto.
         \item \textbf{NUMERO CONIGLI/VOLPI/POZZANGHERE/CAROTE:}  rappresenta il numero di agenti che verranno inizializzati ad inizio dell’esecuzione.
-        \item \textbf{PROBABILITA CRESCITA CAROTE:}  rappresenta la probabilità che ha ogni carota, ad ogni iterazione, di generare un’altra carota vicino ad essa. 
-        \item \textbf{QUANTITA ACQUA:}  rappresenta il numero di animali che può dissetarsi da una singola pozzanghera.
+        \item \textbf{PROBABILITA' CRESCITA CAROTE:}  rappresenta la probabilità che ha ogni carota, ad ogni iterazione, di generare un’altra carota vicino ad essa. 
+        \item \textbf{QUANTITA' ACQUA:}  rappresenta il numero di animali che può dissetarsi da una singola pozzanghera.
         \item \textbf{WIDTH/HEIGHT:}  rappresentano la dimensione della finestra di visualizzazione della simulazione, cambiarli non modifica solo l’aspetto visivo ma va ad alterare anche l’esito della simulazione stessa a causa delle distanze ridotte tra gli agenti.
 
     \end{itemize}
@@ -814,9 +816,63 @@ Una delle fasi più delicate dell'intero progetto è stata quella dedicata al tu
     \item \textbf{soglia velocità corsa Volpe}. Anche per quest'ultimo parametro si è adottato il medesimo valore utilizzato per i Conigli, pari a $x=rand(65, 75)$.
 \end{itemize}
 \end{comment}
-\section{Validazione}
 
 \section{Analisi dei risultati}
+Per collezionare i dati ed analizzare i risultati ottenuti sono state lanciate diverse simulazioni con diverse configurazioni del modello. Le principali configurazioni adottate sono le seguenti: 
+\begin{itemize}
+    \item \textbf{Senza reintroduzione e senza evoluzione};
+    \item \textbf{Con reintroduzione e senza evoluzione};
+    \item \textbf{Con reintroduzione ed evoluzione};
+\end{itemize}
+\subsection{Configurazione senza reintroduzione e senza evoluzione}
+La prima configurazione è stata implementata, in modo tale che, non vi fosse una ciclica reintroduzione degli agenti animale nell'ambiente e per tale ragione è anche la configurazione più semplice e di conseguenza meno interessante delle tre. 
+La differenza tra un sistema con reintroduzione e senza reintroduzione risiede nel fatto che nel secondo caso alcuni animali (sia prede che predatori) vengono inseriti all'interno dell'ambiente con una certa frequenza, mentre nel primo caso questa operazione non avviene, lasciando quindi l'ambiente totalmente chiuso.
+
+Questa prima configurazione è stata principalmente utilizzata per effettuare il tuning ottimale dei parametri. Per esempio, per trovare una soluzione che permettesse di ottenere un trend verosimile delle cause di morte degli animali, facendo in modo che la frequenza dei decessi causati dalla vecchiaia fossero inferiori rispetto a quelli delle altre cause (fame, sete e caccia), che invece sarebbero dovute essere bilanciate tra loro.   
+
+
+\begin{figure}[h!]
+     \centering
+     \includegraphics[scale = 0.5]{popolazioniNoReintroduzione.png}
+     \caption{Grafico popolazione volpi vs popolazione conigli}
+     \label{fig:coniglioVolpeNoReintroduzione}
+\end{figure}
+
+Il grafico in figura \ref{fig:coniglioVolpeNoReintroduzione} mostra l'andamento delle popolazioni delle prede e dei predatori ottenuto con questa prima configurazione del modello. Si può osservare che i conigli inizialmente crescono notevolmente in numero, ma quando saturano le risorse disponibili iniziano a morire di fame, e anche a causa dei predatori, la popolazione si estingue, non consentendo alle volpi di aumentare di numero a causa dell'impossibilità di nutrirsi. 
+
+
+\begin{figure}[h!]
+	\hspace{-12mm}
+	\begin{subfigure}{.5\textwidth}
+            \centering
+            \includegraphics[scale = 0.5]{mortiConigliNoReintroduzione.png}
+            \caption{Grafico cause morte dei conigli}
+            \label{fig:morteConiglioReintroduzione}
+	\end{subfigure}
+		\hspace{5mm}
+		\begin{subfigure}{.5\textwidth}
+		
+		\centering
+        \includegraphics[scale = 0.5]{mortiVolpiNoReintroduzione.png}
+        \caption{Grafico cause morte delle volpi}
+        \label{fig:morteVolpeNoReintroduzione}
+	\end{subfigure}
+\end{figure}
+
+I grafici soprastanti mostrano l'andamento delle cause di morte rispettivamente delle prede e dei predatori. Si può notare che la causa di morte prevalente dei conigli è quella dovuta alla fame, seguita dalla caccia da parte delle volpi. A causa della brevità della simulazione, un numero molto basso di conigli è morto di sete. Per lo stesso motivo solamente 21 conigli sono morti di vecchiaia. 
+
+Per quanto riguarda le volpi, esse sono morte principalmente di sete e di fame. Il numero di volpi morte di vecchiaia è uguale a quello dei conigli morti per lo stesso motivo. 
+
+\vspace{0.5cm}
+
+\noindent Come è possibile notare dalle figure \ref{fig:coniglioVolpeNoReintroduzione}, \ref{fig:morteConiglioReintroduzione} e \ref{fig:morteVolpeNoReintroduzione}, il tempo di esecuzione della simulazione è molto basso, infatti si conclude in poco più di 200 secondi. Il sistema infatti, risulta essere instabile in quanto gli animali si estinguono completamente al termine della simulazione. 
+Per andare oltre questo problema si è optato per estendere il modello realizzando un approccio alternativo con reinserimento.
+
+
+\subsection{Con reinserimento senza evoluzione}
+L'idea principale è di questa configurazione è quella di non visualizzare più l'ambiente come una scatola chiusa, ma aggiungere la possibilità di fare entrare nuovi animali nell'ambiente, come se ciò che si sta visualizzando una piccola parte di un ambiente più grosso. 
+Per questa ragione l'idea è stata quella di reinserire ad ogni cambio stagione un numero proporzionale rispetto al numero iniziale di animali (30 conigli e 10 volpi) %con parametri uguali al valore medio dei parametri degli animali visualizzati nella simulazione. Questo perché si assume che 
+
 
 \section{Conclusioni e sviluppi futuri}
 
