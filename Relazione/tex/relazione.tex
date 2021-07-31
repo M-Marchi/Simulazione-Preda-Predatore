@@ -10,6 +10,7 @@
 \usepackage{array}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{capt-of}
 
 
 \usepackage[backend=biber, sorting=none]{biblatex}
@@ -741,14 +742,14 @@ Al fine di realizzare il progetto di simulazione, si è deciso di utilizzare il 
 \end{itemize} 
 
 Il codice, separato in vari moduli, è così suddiviso: \begin{itemize}
-    \item \textbf{Simulazione}: modulo principale in cui si effettua la simulazione vera e propria. Qui sono descritti i vari agenti come classi e viene utilizzata l'ereditarietà per rappresentare gli agenti Volpe e Coniglio, ereditando alcuni parametri comuni dalla superclasse Animale. Viene inoltre gestita la raccolta dei dati, memorizzando delle “fotografie” dello stato della simulazione ad ogni 250 iterazioni, e tutto ciò che riguarda il "game loop", ovvero la logica con cui pygame gestisce le iterazioni. Anche il tempo di esecuzione è gestito in questo modulo e viene calcolato sulla base del lasso temporale che passa da un'iterazione e l'altra e serve per regolare la quantità di pixel che ogni agente percorre in movimento. Ad ogni 500 iterazioni un controllo va a gestire il cambio delle stagioni e ciò che ne comporta, come il cambio di render del terreno e di diversi parametri di gestione della pioggia e delle carote. Una volta chiusa la finestra di simulazione questo modulo salverà i dati e li passerà al modulo \textit{Plot}. All'inizio dell'esecuzione si utilizzeranno diversi parametri per regolare il funzionamento e la visualizzazione della simulazione. Essi sono:
+    \item \textbf{Simulazione}: modulo principale in cui si effettua la simulazione vera e propria. Qui sono descritti i vari agenti come classi e viene utilizzata l'ereditarietà per rappresentare gli agenti Volpe e Coniglio, ereditando alcuni parametri comuni dalla superclasse Animale. Viene inoltre gestita la raccolta dei dati, memorizzando delle “fotografie” dello stato della simulazione ad ogni 250 iterazioni, e tutto ciò che riguarda il "game loop", ovvero la logica con cui pygame gestisce le iterazioni. Anche il tempo di esecuzione è gestito in questo modulo e viene calcolato sulla base del lasso temporale che passa da un'iterazione e l'altra e serve per regolare la quantità di pixel che ogni agente percorre in movimento. Ad ogni 500 iterazioni un controllo va a gestire il cambio delle stagioni e ciò che ne comporta, come il cambio di render del terreno e di diversi parametri di gestione della pioggia e delle carote. Una volta chiusa la finestra di simulazione questo modulo salverà i dati in un file \textit{.csv} che indirizzerà al modulo \textit{Plot}. All'inizio dell'esecuzione si utilizzeranno diversi parametri per regolare il funzionamento e la visualizzazione della simulazione. Essi sono:
     \begin{itemize}
         \item \textbf{GRAFICA}: se a \textit{True} verranno visualizzati gli agenti animali con sprite 2D, se a \textit{False} gli agenti animali saranno dei pixel, garantendo una migliore fluidità nell'esecuzione nel caso si vada ad effettuare una simulazione con molti render di agenti su schermo;
-        \item \textbf{EVOLUZIONE:} se a \textit{True} nella riproduzione si sommerà un offset casuale ai parametri degli agenti per andare a studiare il meccanismo di selezione evolutiva dei geni, se a \textit{False} la riproduzione genererà animali con parametri ereditati dai genitori senza possibilità di mutamento.
-        \item \textbf{REINSERIMENTO:} se a \textit{True} ogni cambio di stagione verranno reinseriti alcuni animali, se a \textit{False} non ci sarà reinserimento. Utile per andare a studiare l'ambiente come sistema chiuso o aperto.
-        \item \textbf{NUMERO CONIGLI/VOLPI/POZZANGHERE/CAROTE:}  rappresenta il numero di agenti che verranno inizializzati ad inizio dell’esecuzione.
-        \item \textbf{PROBABILITA' CRESCITA CAROTE:}  rappresenta la probabilità che ha ogni carota, ad ogni iterazione, di generare un’altra carota vicino ad essa. 
-        \item \textbf{QUANTITA' ACQUA:}  rappresenta il numero di animali che può dissetarsi da una singola pozzanghera.
+        \item \textbf{EVOLUZIONE:} se a \textit{True} nella riproduzione si sommerà un offset casuale ai parametri degli agenti per andare a studiare il meccanismo di selezione evolutiva dei geni, se a \textit{False} la riproduzione genererà animali con parametri ereditati dai genitori senza possibilità di mutamento;
+        \item \textbf{REINSERIMENTO:} se a \textit{True} ogni cambio di stagione verranno reinseriti alcuni animali, se a \textit{False} non ci sarà reinserimento. Utile per andare a studiare l'ambiente come sistema chiuso o aperto;
+        \item \textbf{NUMERO CONIGLI/VOLPI/POZZANGHERE/CAROTE:}  rappresenta il numero di agenti che verranno inizializzati ad inizio dell’esecuzione;
+        \item \textbf{PROBABILITA\_CRESCITA\_CAROTE:}  rappresenta la probabilità che ha ogni carota, ad ogni iterazione, di generare un’altra carota vicino ad essa;
+        \item \textbf{QUANTITA\_ACQUA:}  rappresenta il numero di animali che può dissetarsi da una singola pozzanghera;
         \item \textbf{WIDTH/HEIGHT:}  rappresentano la dimensione della finestra di visualizzazione della simulazione, cambiarli non modifica solo l’aspetto visivo ma va ad alterare anche l’esito della simulazione stessa a causa delle distanze ridotte tra gli agenti.
 
     \end{itemize}
@@ -762,7 +763,26 @@ Il codice, separato in vari moduli, è così suddiviso: \begin{itemize}
 
     \item \textbf{Vector2D}: collezione di metodi per la gestione delle coordinate e dello spazio vettoriale. Vengono utilizzati metodi per ottenere ed elaborare la posizione, la distanza, il modulo (magnitudine), la norma e la direzione dei punti sul piano 2D.
     
-    \item \textbf{Plot}: modulo che prende come parametro il file \textit{.csv} generato dalla simulazione e ne visualizza i valori creando diversi grafici e memorizzandoli in cartelle apposite, identificate dal seed della simulazione e la presenza di evoluzione (tag E) e reintroduzione (tag R).
+    \item \textbf{Plot}: modulo che prende come parametro il file \textit{.csv} generato dalla simulazione e ne visualizza i valori creando diversi grafici e memorizzandoli in cartelle apposite, identificate dal seed della simulazione e la presenza di evoluzione (tag E) e reintroduzione (tag R). I grafici generati per ogni simulazione sono:
+    \begin{itemize}
+        \item \textbf{\textit{conigli-carote.png}}: mostra la differenza tra le popolazioni di conigli e carote;
+        \item \textbf{\textit{età.png}}: mostra le differenze dell'età media tra le due specie;
+        \item \textbf{\textit{fame.png}}: mostra le differenze di fame media tra le due specie;
+        \item \textbf{\textit{sete.png}}: mostra le differenze di sete media tra le due specie;
+        \item \textbf{\textit{fertilita.png}}: mostra le differenze di fertilità media tra le due specie;
+        \item \textbf{\textit{morti\_conigli.png}}: mostra le cause di morte dei conigli;
+        \item \textbf{\textit{morti\_volpi.png}}: mostra le cause di morte dei conigli;
+        \item \textbf{\textit{nascite.png}}: mostra le nascite delle due specie a confronto;
+        \item \textbf{\textit{popolazioni.png}}: mostra le popolazioni degli animali a confronto;
+        \item \textbf{\textit{risorse.png}}: mostra le risorse a confronto;
+        \item \textbf{\textit{percezione.png}}: mostra la percezione media degli animali;
+        \item \textbf{\textit{soglia\_fame\_media.png}}: mostra la soglia fame media degli animali;
+        \item \textbf{\textit{soglia\_sete\_media.png}}: mostra la soglia sete media degli animali;
+        \item \textbf{\textit{soglia\_morte\_di\_fame\_media.png}}: mostra la soglia di morte di fame media degli animali;
+        \item \textbf{\textit{soglia\_morte\_di\_sete\_media.png}}: mostra la soglia di morte di sete media degli animali;
+        \item \textbf{\textit{velocita\_camminata\_media.png}}: mostra la velocità di camminata media degli animali;
+        \item \textbf{\textit{velocita\_corsa\_media.png}}: mostra la velocità di corsa media degli animali;
+    \end{itemize}
 \end{itemize}
 
 \begin{comment}
@@ -847,11 +867,10 @@ Il grafico in figura \ref{fig:coniglioVolpeNoReintroduzione} mostra l'andamento 
             \centering
             \includegraphics[scale = 0.5]{mortiConigliNoReintroduzione.png}
             \caption{Grafico cause morte dei conigli}
-            \label{fig:morteConiglioReintroduzione}
+            \label{fig:morteConigliNoReintroduzione}
 	\end{subfigure}
 		\hspace{5mm}
 		\begin{subfigure}{.5\textwidth}
-		
 		\centering
         \includegraphics[scale = 0.5]{mortiVolpiNoReintroduzione.png}
         \caption{Grafico cause morte delle volpi}
@@ -865,14 +884,333 @@ Per quanto riguarda le volpi, esse sono morte principalmente di sete e di fame. 
 
 \vspace{0.5cm}
 
-\noindent Come è possibile notare dalle figure \ref{fig:coniglioVolpeNoReintroduzione}, \ref{fig:morteConiglioReintroduzione} e \ref{fig:morteVolpeNoReintroduzione}, il tempo di esecuzione della simulazione è molto basso, infatti si conclude in poco più di 200 secondi. Il sistema infatti, risulta essere instabile in quanto gli animali si estinguono completamente al termine della simulazione. 
+\noindent Come è possibile notare dalle figure \ref{fig:coniglioVolpeNoReintroduzione}, \ref{fig:morteConiglioNoReintroduzione} e \ref{fig:morteVolpeNoReintroduzione}, il tempo di esecuzione della simulazione è molto basso, infatti si conclude in poco più di 200 secondi. Il sistema infatti, risulta essere instabile in quanto gli animali si estinguono completamente al termine della simulazione. 
 Per andare oltre questo problema si è optato per estendere il modello realizzando un approccio alternativo con reinserimento.
 
 
-\subsection{Con reinserimento senza evoluzione}
-L'idea principale è di questa configurazione è quella di non visualizzare più l'ambiente come una scatola chiusa, ma aggiungere la possibilità di fare entrare nuovi animali nell'ambiente, come se ciò che si sta visualizzando una piccola parte di un ambiente più grosso. 
-Per questa ragione l'idea è stata quella di reinserire ad ogni cambio stagione un numero proporzionale rispetto al numero iniziale di animali (30 conigli e 10 volpi) %con parametri uguali al valore medio dei parametri degli animali visualizzati nella simulazione. Questo perché si assume che 
+\subsection{Configurazione con reintroduzione senza evoluzione}
+L'idea di questa configurazione è quella di non visualizzare più l'ambiente come una scatola chiusa, ma aggiungere la possibilità di fare entrare nuovi animali (sia volpi che conigli) nell'ambiente, come se l'ambiente che si sta visualizzando fosse una piccola una piccola porzione di un ambiente più grande. 
+Seguendo questa logica, è stato fatto in modo che venissero inseriti volpi e conigli nell'ambiente ad ogni cambio stagione in modo proporzionale rispetto al numero di animali presenti all'inizio della simulazione (30 conigli e 10 volpi). %con parametri uguali al valore medio dei parametri degli animali visualizzati nella simulazione. Questo perché si assume che 
 
+
+\begin{figure}[h!]
+	\hspace{-5mm}
+	\begin{subfigure}{.5\textwidth}
+            \centering
+     \includegraphics[scale = 0.51]{conigli-caroteR.png}
+     \caption{Grafico popolazione conigli vs popolazione carote}
+     \label{fig:conigliCaroteReintroduzione}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\hspace{5mm}
+		\centering
+     \includegraphics[scale = 0.45]{popolazioniR.png}
+     \caption{Grafico popolazione conigli vs popolazione volpi}
+     \label{fig:conigliVolpiReintroduzione}
+	\end{subfigure}
+\end{figure}
+
+
+Dal grafico \ref{fig:conigliCaroteReintroduzione} è possibile notare innanzitutto che il sistema così esteso risulta essere stabile, a differenza del modello nella configurazione presentata in precedenza, in quanto non si verifica mai durante la simulazione l'estinzione di tutti gli animali presenti nel sistema. 
+Il numero delle carote e dei conigli presenti nel sistema segue un andamento di questo tipo: inizialmente i conigli crescono in numero, fino a diventare circa 1100 e contemporaneamente le carote vengono completamente mangiate fino a quando non ne resta praticamente nessuna; a questo punto il numero di conigli inizia a diminuire drasticamente a causa del fatto che nell'ambiente non ci sono abbastanza carote per poter sostentare tutta la popolazione. Nel contempo, il numero di carote inizia a crescere e all'incirca quando il numero di conigli ha raggiunto il minimo locale, il numero di carote raggiunge il massimo. Così il numero di conigli può tornare a crescere dato che ci sono abbastanza carote nell'ambiente. Tutto ciò si ripete ciclicamente fino al termine della simulazione. 
+
+La figura \ref{fig:conigliVolpiReintroduzione} mostra invece l'andamento delle popolazioni dei conigli e delle volpi nel corso della simulazione. Come si vede dall'immagine, il trend è esattamente analogo a quello delle popolazioni dei conigli e delle carote, discusso in precedenza. In entrambi i casi infatti, l'andamento segue all'incirca quello di due sinusoidi sfasate. 
+
+
+\begin{figure}[h!]
+     \centering
+     \includegraphics[scale = 0.6]{nasciteR.png}
+     \caption{Grafico delle nascite dei conigli e delle volpi}
+     \label{fig:nasciteReintroduzione}
+\end{figure}
+
+La figura \ref{fig:nasciteReintroduzione} mostra come evolvono le nascite all'interno delle due popolazioni. Come, prevedibile, è risultato che i conigli si riproducono con una frequenza significativamente superiore rispetto alle volpi. 
+
+Il grafico \ref{fig:morteConigliReintroduzione} mostra l'andamento del numero di decessi dei conigli suddivisi in base alla causa. Si può notare che anche in questo caso i conigli muoiono perlopiù di fame a causa del fatto che, come appurato dal grafico mostrato in figura \ref{fig:nasciteReintroduzione}, essi tendono a riprodursi frequentemente e quindi questo porta alla competizione tra gli individui per ottenere le carote disponibili. Molto rilevante è anche il numero di morti causate dalla caccia da parte dei predatori. Invece, il numero di conigli morti di sete e di vecchiaia risulta essere piuttosto contenuto rispetto ai decessi dovuti alle altre due cause. 
+
+Dalla figura \ref{fig:morteVolpiReintroduzione}, che rappresenta il grafico relativo all'andamento delle numero di decessi delle volpi e le loro cause, si può notare che anche in questo caso la causa di morte prevalente tra le volpi è la fame. Questo perché nei momenti in cui sono presenti pochi conigli nell'ambiente le volpi non trovano prede con cui sfamarsi e di conseguenza muoiono. La seconda causa più rilevante è la sete e infine vecchiaia. La ragione per la quale sia per le volpi che per i conigli la vecchiaia sia solo l'ultima delle cause di morte è che gli individui di entrambe le popolazioni difficilmente riescono a raggiungere l'età della vecchiaia perché tendenzialmente muoiono prima a causa della scarsità delle risorse (acqua per entrambe le specie, carote per i conigli e conigli per le volpi) che si verifica ciclicamente nella simulazione. 
+
+Infine, dal grafico in figura \ref{fig:risorseReintroduzione} si può notare che il numero di pozzanghere presenti nell'ambiente rimane sempre abbastanza equilibrato a differenza delle carote che tendono a esaurirsi in modo ciclico. É questa la ragione per cui gli individui di entrambe le popolazioni raramente muoiono di sete.
+
+\begin{figure}[h!]
+	\hspace{-5mm}
+	\begin{subfigure}{.52\textwidth}
+         \centering
+         \includegraphics[scale = 0.50]{morti_conigliR.png}
+         \caption{Grafico cause di morte conigli}
+         \label{fig:morteConigliReintroduzione}
+	\end{subfigure}
+	\begin{subfigure}{.55\textwidth}
+		\hspace{12mm}
+		\centering
+        \includegraphics[scale = 0.50]{morti_volpiR.png}
+        \caption{Grafico cause di morte volpi}
+        \label{fig:morteVolpiReintroduzione}
+	\end{subfigure}
+\end{figure}
+
+\begin{figure}[h!]
+     \centering
+     \includegraphics[scale = 0.6]{risorseR.png}
+     \caption{Grafico delle risorse}
+     \label{fig:risorseReintroduzione}
+\end{figure}
+
+
+\subsubsection{Validazione del modello}
+Al fine di verificare che il modello realizzato corrispondesse a ciò che ci si attendeva è stata eseguita una operazione di validazione dello stesso, descritta in questo paragrafo. 
+Per effettuare questo lavoro sono stati considerati i risultati del modello lotka-volterra, descritto nella sezione \ref{sec:LV}. Oltre a ciò, è stato preso in considerazione anche un set di dati relativi all'interazione della popolazione delle linci canadesi e quella delle lepri scarpa di neve (Lepus americanus), raccolti grazie alle osservazioni durate quasi un secolo condotte dalla Hudson Bay Company.  
+
+Per prima cosa, è possibile affermare che il modello in questa seconda configurazione risulta essere stabile e la sua esecuzione viene portata avanti per un tempo indefinito senza interrompersi, a differenza del modello realizzato nella prima configurazione.
+
+\begin{figure}[h!]
+     \centering
+     \includegraphics[scale = 0.5]{hareLynx.png}
+     \caption{Grafico dell'andamento del numero di individui delle popolazioni di linci canadesi e di lepri scarpa di neve}
+     \label{fig:hareLynx}
+\end{figure}
+
+La figura \ref{fig:hareLynx} mostra l'evoluzione delle popolazioni delle linci canadesi e delle lepri scarpa di neve, osservate dalla Hudson Bay Company. Confrontando tale grafico con quelli presentati in precedenza nelle figure \ref{fig:conigliCaroteReintroduzione} e \ref{fig:conigliVolpiReintroduzione}, si nota che l'andamento è molto simile. Infatti, inizialmente il numero di prede è superiore al numero di predatori, successivamente dopo un momento in cui il numero di predatori cala ulteriormente, esso  tende a risalire e contemporaneamente il numero di prede cala. In seguito il numero di predatori torna a calare e le prede aumentano in numero. Questo pattern si ripete in modo abbastanza sistematico per tutta la durata delle osservazioni. 
+
+\begin{figure}[h!]
+     \centering
+     \includegraphics[scale = 0.5]{LV.png}
+     \caption{Grafico che mostra la dinamica delle popolazioni preda e predatore simulata mediante il modello Lotka-Volterra}
+     \label{fig:LVValidazione}
+\end{figure}
+
+La figura \ref{fig:LVValidazione} mostra la dinamica delle popolazioni di specie di predatori e di una di prede che seguono le equazioni di Lotka-Volterra, dati i seguenti parametri: 
+\begin{itemize}
+	\item numero di prede all'inizio della simulazione: 10;
+	\item numero di predatori all'inizione della simulazione: 10;
+	\item tasso di crescita delle prede: 1.1;
+	\item tasso di morte delle prede: 0.4;
+	\item tasso di crescita dei predatori: 0.1;
+	\item tasso di morte dei predatori: 0.4
+\end{itemize}
+Confrontando i grafici \ref{fig:conigliCaroteReintroduzione} e \ref{fig:conigliVolpiReintroduzione} si può notare che l'andamento delle popolazioni del modello realizzato e di quelle del modello di Lotka-Volterra sono del tutto speculari. 
+
+
+
+
+\begin{figure}[h!]
+	\hspace{-5mm}
+	\begin{subfigure}{.5\textwidth}
+    \centering
+     \includegraphics[scale = 0.50]{fasiLV.png}
+     \caption{Phase space plot del modello Lotka-Volterra date varie condizioni iniziali relative al numero di predatori}
+     \label{fig:LVPhaseSpace}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\hspace{10mm}
+		\centering
+     \includegraphics[scale = 0.37]{conigliVSVolpi.png}
+     \caption{Grafico popolazione conigli vs popolazione volpi del modello realizzato}
+     \label{fig:conigliVolpi}
+	\end{subfigure}
+\end{figure}
+\begin{figure}[h!]
+     
+\end{figure}
+
+
+La figura \ref{fig:LVPhaseSpace} mostra sull'asse delle ascisse il numero di prede e sull'asse delle ordinare il numero di predatori per il modello di Lotka-Volterra in diverse condizioni in cui varia il numero di predatori che popolano inizialmente il sistema. Invece, la figura \ref{fig:conigliVolpi} riproduce lo stesso grafico, realizzato considerando i dati delle simulazioni condotte sul modello implementato. Confrontando i due grafici, è possibile notare che l'andamento è tendenzialmente il medesimo, pur essendoci delle piccole differenze. 
+
+
+\begin{figure}[h!]
+     \centering
+     \includegraphics[scale = 0.4]{conigliVScarote.png}
+     \caption{Grafico che mostra il confronto tra il numero di conigli e il numero di carote del modello realizzato}
+     \label{fig:conigliCarote}
+\end{figure}
+
+Lo stesso grafico è stato realizzato prendendo in considerazione il numero di carote invece che il numero di volpi, in quanto nel modello sviluppato possiamo considerare due coppie di popolazione preda-predatore: le volpi e i conigli da una parte e i conigli e le carote dall'altra.  Il risultato è visibile in figura \ref{fig:conigliCarote}. In questo caso si è ottenuto un risultato ancora più conforme rispetto ai risultati del modello Lotka-Volterra mostrati in figura \ref{fig:LVPhaseSpace}.
+
+
+
+
+\subsection{Configurazione con reintroduzione ed evoluzione}
+
+Questa configurazione consente di effettuare un ulteriore passo avanti, aggiungendo complessità al modello considerando anche la possibilità di evoluzione negli gli animali. L'obiettivo era quello di verificare se l'aggiunta di un fenomeno di mutazione delle caratteristiche degli animali potesse in qualche modo cambiare l'esito della simulazione, e quindi dell'equilibrio, dell'ecosistema. Per unire l'evoluzione con il reinserimento è stato assunto che gli animali al di fuori dell'ambiente visualizzato subissero la stessa pressione evolutiva di quelli della simulazioni e dunque ogni volta che vi è reintroduzione gli animali reinseriti avranno le caratteristiche uguali alla media degli animali presenti all'interno dell'ambiente, portando avanti così il fenomeno di selezione naturale. Questa configurazione rappresenta il modello finale e più complesso delle tre, portando ad ottenere i risultati più interessanti.
+
+\begin{figure}[h!]
+	\hspace{-5mm}
+	\begin{subfigure}{.5\textwidth}
+    \centering
+     \includegraphics[scale = 0.51]{conigli-carote_RE.png}
+     \caption{Grafico popolazione conigli vs popolazione carote}
+     \label{fig:conigliCaroteRE}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\hspace{5mm}
+		\centering
+     \includegraphics[scale = 0.45]{popolazioni_RE.png}
+     \caption{Grafico popolazione conigli vs popolazione volpi}
+     \label{fig:conigliVolpiRE}
+	\end{subfigure}
+\end{figure}
+
+L'esito di questa configurazione può essere suddiviso in due parti. Una parte iniziale, che nei grafici va dall'inizio a circa l'istante 4000, in cui i conigli sfruttano la loro unica "arma" per contrastare il dominio delle volpi, ovvero il loro vantaggio riproduttivo, come mostrato chiaramente nella figura \ref{fig:fertilitaRE}. Se i conigli riescono ad evolvere abbassando drasticamente la loro soglia di fertilità ci sarà un esplosione di nascite che farà sì che i conigli compensino la capacità predatoria delle volpi, schiacciandole con la loro velocità di riproduzione e dalla loro superiorità numerica, con picchi di quasi 3000 unita, com'è possibile notare nella figura \ref{fig:conigliVolpiRE}.
+Ciò però comporta diversi malus ai conigli stessi, come una saturazione delle risorse molto rapida (Figura \ref{fig:conigliCaroteRE}) e un aumento delle volpi proporzionale, se pur più lento, a quello dei conigli che fungono da "carburante" per garantire l'energia necessaria alle volpi per continuare a riprodursi. \\
+La seconda parte, che inizia dall'istante 4000 fino alla fine, invece è caratterizzata da un dominio delle volpi nell'ambiente, che acquisiscono un controllo territoriale totale. Questo è dovuto dal fatto che gli animali, ad ogni ciclo di crescita, miglioravano costantemente le loro caratteristiche fino ad ottenere un vantaggio tale nella caccia da non lasciare tempo per conigli di riprodursi, come mostra il rallentamento in figura \ref{fig:nasciteRE}. Questo però non comporta solo vantaggi per volpi: a causa del ridotto numero di conigli non vi sarà più crescita nella popolazione delle volpi, arrivando ad ottenere una sorta di equilibrio tra le due specie.
+
+\newpage
+
+\begin{figure}[h!]
+	\hspace{-5mm}
+	\begin{subfigure}{.52\textwidth}
+         \centering
+         \includegraphics[scale = 0.55]{morti_conigli_RE.png}
+         \caption{Grafico cause di morte conigli}
+         \label{fig:morteConigliRE}
+	\end{subfigure}
+	\begin{subfigure}{.55\textwidth}
+		\hspace{12mm}
+		\centering
+        \includegraphics[scale = 0.55]{morti_volpi_RE.png}
+        \caption{Grafico cause di morte volpi}
+        \label{fig:morteVolpiRE}
+	\end{subfigure}
+
+	\hspace{-5mm}
+	\begin{subfigure}{.52\textwidth}
+         \centering
+         \includegraphics[scale = 0.55]{nascite_RE.png}
+         \caption{Grafico nascite a confronto}
+         \label{fig:nasciteRE}
+	\end{subfigure}
+	\begin{subfigure}{.55\textwidth}
+		\hspace{12mm}
+		\centering
+        \includegraphics[scale = 0.55]{risorse_RE.png}
+        \caption{Grafico risorse a confronto}
+        \label{fig:risorseRE}
+	\end{subfigure}
+\end{figure}
+
+\vspace{1cm}
+\begin{itemize}
+
+
+    \item Le figura \ref{fig:morteConigliRE} mostra come le cause di morte dei conigli inizialmente siano bilanciate tra fame e caccia, però quest'ultima diventa predominante nella seconda fase della simulazione, in cui le volpi non lasciano più spazio ai conigli. La figura \ref{fig:morteVolpiRE} mostra invece come le cause di morte siano bilanciate tra loro. Nella fase iniziale è possibile notare dei "salti" dovuti ai momenti in cui i conigli si diffondono, non facendo mancare nutrimento, e momenti in cui i conigli e l'acqua sono terminati.
+
+
+    \item La figura \ref{fig:nasciteRE} mostra chiaramente la dicotomia tra le due fasi, la prima in cui i conigli si diffondono vertiginosamente e la seconda in cui si arriva ad un punto asintotico in cui le nascite sono bloccate a causa dell'evoluzione delle volpi.
+
+
+    \item La figura \ref{fig:risorseRE} mostra una prima fase di carenza delle risorse e una seconda in cui l'assenza dei conigli comporta una crescita costante di esse.
+
+\end{itemize}
+
+\begin{figure}[h!]
+	\hspace{-5mm}
+	\begin{subfigure}{.52\textwidth}
+         \centering
+         \includegraphics[scale = 0.55]{Percezione_RE.png}
+         \caption{Grafico andamento della caratteristica percezione media}
+         \label{fig:percezioneRE}
+	\end{subfigure}
+	\begin{subfigure}{.55\textwidth}
+		\hspace{12mm}
+		\centering
+        \includegraphics[scale = 0.55]{soglia_fertilita_media_RE.png}
+        \caption{Grafico andamento della caratteristica soglia fertilità media}
+        \label{fig:fertilitaRE}
+	\end{subfigure}
+\end{figure}
+
+\begin{itemize}
+
+
+    \item La figura \ref{fig:percezioneRE} mostra quanto l'evoluzione giochi un ruolo fondamentale in questo modello. Le volpi arrivano a quadruplicare la loro percezione base, andando ad ottenere un controllo sul territorio molto più esteso.
+
+    \item La figura \ref{fig:fertilitaRE} indica come siano principalmente i conigli a trarre vantaggio dall'abbassamento del tempo impiegato per tornare ad essere fertili. Il valore ottenuto sfiora lo zero, confermando che questa è la vera caratteristica a vantaggio dei conigli. 
+\end{itemize}
+
+\newpage
+
+\begin{figure}[h!]
+	\hspace{-5mm}
+	\begin{subfigure}{.52\textwidth}
+         \centering
+         \includegraphics[scale = 0.55]{soglia_fame_media_RE.png}
+         \caption{Grafico andamento della caratteristica soglia fame media}
+         \label{fig:FameRE}
+	\end{subfigure}
+	\begin{subfigure}{.55\textwidth}
+		\hspace{12mm}
+		\centering
+        \includegraphics[scale = 0.55]{soglia_sete_media_RE.png}
+        \caption{Grafico andamento della caratteristica soglia sete media}
+        \label{fig:SeteRE}
+	\end{subfigure}
+\end{figure}
+
+\begin{itemize}
+
+
+    \item Le figure \ref{fig:FameRE} e \ref{fig:SeteRE} sono equiparabili e mostrano un dato interessante: le soglie di fame e sete non hanno un grande peso nell'evoluzione degli animali. Questo probabilmente è dovuto al fatto che gli animali hanno bisogno di nutrirsi in tempi molto ristretti, a causa della modellazione della simulazione, e quindi non è significativo una diminuzione di questa soglia per avere vantaggio evolutivo.
+\end{itemize}
+
+\newpage 
+
+\begin{figure}[ht!]
+	\hspace{-5mm}
+	\begin{subfigure}{.52\textwidth}
+         \centering
+         \includegraphics[scale = 0.55]{soglia_morte_di_fame_media_RE.png}
+         \caption{Grafico andamento della caratteristica soglia morte di fame media}
+         \label{fig:morteFameRE}
+	\end{subfigure}
+	\begin{subfigure}{.55\textwidth}
+		\hspace{12mm}
+		\centering
+        \includegraphics[scale = 0.55]{soglia_morte_di_sete_media_RE.png}
+        \caption{Grafico andamento della caratteristica soglia morte di sete media}
+        \label{fig:morteSeteRE}
+	\end{subfigure}
+\end{figure}
+
+
+
+\begin{itemize}
+
+
+    \item Le figure \ref{fig:morteFameRE} e \ref{fig:morteSeteRE} sono altrettanto equiparabili e mostrano un come le soglie di morte di fame e sete invece siano caratteristiche che vanno ad influenzare il processo evolutivo degli animali. Saranno gli agenti che hanno una maggiore resistenza alle carenze di risorse quelli che porteranno avanti la specie. 
+    
+\end{itemize}
+
+\newpage 
+
+\begin{figure}[ht!]
+		\hspace{-5mm}
+	\begin{subfigure}{.52\textwidth}
+         \centering
+         \includegraphics[scale = 0.55]{velocita_camminata_media_RE.png}
+         \caption{Grafico andamento della caratteristica velocità camminata media}
+         \label{fig:camminataRE}
+	\end{subfigure}
+	\begin{subfigure}{.55\textwidth}
+		\hspace{12mm}
+		\centering
+        \includegraphics[scale = 0.6]{velocita_corsa_media_RE.png}
+        \caption{Grafico andamento della caratteristica velocità corsa media}
+        \label{fig:corsaRE}
+	\end{subfigure}
+\end{figure}
+
+\begin{itemize}
+
+
+    \item Le figure \ref{fig:camminataRE} e \ref{fig:corsaRE} rappresentano i risultati più sorprendenti. E' possibile notare come, se nella prima parte della simulazione i valori non subiscono cambiamenti significativi, nella seconda si crei una vera e proprio divergenza tra le due specie. Questa differenza è stata interpretata nel modo seguente:
+    \begin{itemize}
+        \item Le volpi, una volta in controllo del territorio, hanno a disposizione pochi conigli per cibarsi e dunque gli esemplari più veloci saranno quelli che riescono ad arrivare prima alle prede, evitando di morire di fame.
+        \item I conigli invece, in netto svantaggio sui predatori, comprendono che la soluzione migliore è quella di muoversi il meno possibile, evitando di esporsi alle minacce. Infatti si nota come la velocità di corsa rimane stabile, ma la velocità di camminata tende a zero, evitando di effettuare movimenti se non si ha nel raggio di percezione un obbiettivo specifico. Questo può essere interpretato come un modo per i conigli di nascondersi dai predatori, proprio come nella realtà fanno attraverso l'utilizzo di tane, da cui prendono il nome\footnote{La parola coniglio deriva da dal latino "\textit{cuniculus}", cioè buca sotterranea.\cite{WikiConiglio} }. 
+    \end{itemize}
+
+\end{itemize}
+
+\newpage 
 
 \section{Conclusioni e sviluppi futuri}
 
