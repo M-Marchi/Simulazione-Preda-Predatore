@@ -7,7 +7,7 @@ import pandas as pd
 
 import Ambiente as a
 import Vector2D as v2
-import Plot as pl
+import plot as pl
 
 pygame.init()
 
