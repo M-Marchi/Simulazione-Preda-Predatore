@@ -17,7 +17,7 @@ random.seed(seed)
 
 # Settings simulazione:
 
-GRAFICA = False
+GRAFICA = True
 REINSERIMENTO = True
 EVOLUZIONE = True
 
