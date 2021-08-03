@@ -9,9 +9,14 @@ import Ambiente as a
 import Vector2D as v2
 import plot as pl
 
+# inizializzazione pygame
 pygame.init()
 
-seed = random.random()
+# impostazione seed
+seed = 0
+
+if seed == 0:
+    seed = random.random()
 
 random.seed(seed)
 
@@ -34,7 +39,7 @@ PROBABILITA_CRESCITA_CAROTE = 0.0005
 QUANTITA_ACQUA = 3
 
 
-
+# parametri finestra
 WIDTH = 1200
 HEIGHT = 800
 SCREEN_SIZE = (WIDTH, HEIGHT)
@@ -42,20 +47,25 @@ screen = pygame.display.set_mode(SCREEN_SIZE, 0, 32)
 pygame.display.set_caption("Simulazione Ecosistema")
 font = pygame.font.SysFont("Arial", 18)
 
+# inizializzazione ambiente
 ambiente = a.Ambiente()
 
+# inizializzazione immagini animali
 img_volpe = pygame.image.load('images/fox.png').convert_alpha()
 img_coniglio = pygame.image.load('images/rabbit.png').convert_alpha()
 
+# inizializzazione clock
 clock = pygame.time.Clock()
 
+
+# inizializzazione riquadro statistiche real time
 stats = pygame.Surface((WIDTH // 4, HEIGHT // 4))
 stats.fill((215, 215, 215))
 stats.set_alpha(210)
 stats_pos = ((WIDTH // 40) + 450, (HEIGHT // 40) - 20)
 
 
-
+# inizializzazione dizionario informazioni
 data = {
     'evoluzione': [],
     'reinserimento': [],
@@ -104,7 +114,7 @@ data = {
 }
 
 
-
+# classe Animale
 class Animale():
     def __init__(self, ambiente, nome, coord=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT)),
                  destinazione=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT)),
@@ -152,7 +162,7 @@ class Animale():
         self.img = None
 
 
-
+    # cerca compagno fertile nel raggio percezione
     def cerca_compagno(self):
         if self.compagno is None or self.compagno.id not in self.ambiente.agenti:
             if self.eta > 4:  # gli animali vecchi hanno una percezione più debole
@@ -183,7 +193,7 @@ class Animale():
                     self.accoppiamento()
 
 
-
+    # l'accomppiamento porta a gravidanza dell'animale
     def accoppiamento(self):
         self.fertilita = False
         self.tempo_periodo_fertile = 0
@@ -193,7 +203,7 @@ class Animale():
         self.destinazione = v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT))
 
 
-
+    # nascita del cucciolo di animale, se EVOLUZIONE == True si aggiunge offset
     def nascita(self):
         
         if EVOLUZIONE:
@@ -334,7 +344,7 @@ class Animale():
 
 
 
-
+    # valutazione bisogni agente
     def bisogni_primari(self):
         if self.tempo_digiuno > self.soglia_morte_di_fame:
             self.morte()
@@ -361,7 +371,7 @@ class Animale():
 
 
 
-
+    # ricerca acqua
     def dissetarsi(self):
         if self.pozzanghera == None or self.pozzanghera.id not in self.ambiente.agenti:
 
@@ -394,6 +404,7 @@ class Animale():
 
                 self.pozzanghera = None
 
+    # ricerca cibo
     def caccia(self):
 
         if self.preda is None or self.preda.id not in self.ambiente.agenti:
@@ -427,9 +438,11 @@ class Animale():
                 self.preda = None
                 self.destinazione = v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT))
 
+    # rimozione agente da ambiente
     def morte(self):
         self.ambiente.lista_agenti_rimossi.add(self)
 
+    # se non si hanno destinazioni l'agente cammina
     def cammina(self):
 
         if self.eta < 0.5 or self.eta > 4:  # se sono cuccioli o vecchi allora hanno una velocità minore
@@ -442,7 +455,8 @@ class Animale():
         else:
             return None
 
-
+    # funzione per effettuare movimento
+    # si usa il tempo per calcolare lo spostamento in base ai pixel che percorre al secondo
     def movimento(self, tempo_passato_secondi):
         distance_to_destinazione = self.coord.get_distance_from_point(self.destinazione)
         if distance_to_destinazione < 5:
@@ -456,7 +470,7 @@ class Animale():
         self.coord += heading * distance
         self.coord_int = self.coord.int_()
 
-
+    # processamento degli agenti animali nel tempo
     def process(self, tempo_passato_secondi):
         self.tempo_digiuno += 1
         self.tempo_disidratazione += 1
@@ -493,6 +507,10 @@ class Animale():
 
         self.movimento(tempo_passato_secondi)
 
+    # render degli animali in base a GRAFICA
+    # se True si usano sprite 2D
+    # se False si renderizzano dei quadrati di pixel
+
     def render(self, screen):
         if GRAFICA:
             if self.eta < 0.5:
@@ -508,7 +526,7 @@ class Animale():
             else:
                 pygame.draw.circle(screen, self.color, (self.coord_int.x, self.coord_int.y), 3)
 
-
+# Agente Volpe
 class Volpe(Animale):
     def __init__(self, ambiente, coord=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT)),
                  destinazione=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT)),
@@ -540,7 +558,7 @@ class Volpe(Animale):
 
 
 
-
+# Agente Coniglio
 class Coniglio(Animale):
     def __init__(self, ambiente, coord=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT)),
                  destinazione=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT)),
@@ -573,7 +591,7 @@ class Coniglio(Animale):
 
 
 
-
+# classe Acqua
 class Acqua():
     def __init__(self, ambiente, coord=v2.Vector2D(random.randint(10, WIDTH - 10), random.randint(10, HEIGHT - 10))):
         self.ambiente = ambiente
@@ -595,10 +613,11 @@ class Acqua():
     def process(self, tempo_passato_secondi):
         None
 
+    # render in base alla quantità disponibile
     def render(self, screen):
         pygame.draw.circle(screen, self.colore, (self.coord_int.x, self.coord_int.y), self.quantita * 2)
 
-
+# classe Carota
 class Carota():
     def __init__(self, ambiente, coord=v2.Vector2D(random.randint(20, WIDTH - 20), random.randint(20, HEIGHT - 20))):
         self.ambiente = ambiente
@@ -617,6 +636,7 @@ class Carota():
     def morte(self):
         Animale.morte(self)
 
+    # probabilità di generazione di una carota vicina
     def Crescita(self):
 
         if random.random() < PROBABILITA_CRESCITA_CAROTE:
@@ -627,12 +647,13 @@ class Carota():
     def process(self, tempo_passato_secondi):
         self.Crescita()
 
-        #le carote possono marcire
+        # le carote possono marcire
         self.eta += 0.002
         if self.eta > 2.5:
             self.colore = (150, 75, 0)
         if self.eta > 3:
             self.morte()
+
 
     def render(self, screen):
         pygame.draw.circle(screen, self.colore, (self.coord_int.x, self.coord_int.y), 2)
@@ -644,9 +665,9 @@ class Carota():
 
 # inizializzazione agenti
 def introduzione():
-    for i in range(250):
+    for i in range(NUMERO_CAROTE):
         ambiente.aggiungi_agente(Carota(ambiente, coord=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT))))
-    for i in range(200):
+    for i in range(NUMERO_POZZANGHERE):
         ambiente.aggiungi_agente(Acqua(ambiente, coord=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT))))
 
 
@@ -675,7 +696,7 @@ def introduzione():
                                           velocita_camminata=random.randint(40, 60),
                                           velocita_corsa=random.randint(65, 75)))
 
-
+# reintroduzione agenti nell'ambiente ogni cambio di stagione
 def reintroduzione():
     for i in range(10):
         ambiente.aggiungi_agente(Volpe(ambiente, coord=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT)),
@@ -714,6 +735,7 @@ frame_num = 250
 
 introduzione()
 
+# quando si chiude la finestra pygame salva in un csv i dati
 while True:
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -724,19 +746,22 @@ while True:
             pl.plot_and_save(seed)
             exit()
 
-    # GAME LOOP
+    #---------- INIZIO GAME LOOP ----------#
 
-    screen.fill((0, 150, 20))
+
     tempo_passato = clock.tick(
         150)  # valore alto: tempo passa velocemente ->troppi morti di fame e proliferazione piante
     tempo_passato_secondi = tempo_passato / 1000
 
     ambiente.giorno += 0.001
+    # ogni volta che si raggiunge il valore 2 iniza l'anno nuovo
     giorno_anno = ambiente.giorno % 2
+    # variabile utilizzata per asse X del plot real time
     giorno_grafico = ambiente.giorno % 12
 
+    # GESTIONE STAGIONI
 
-
+    # primavera
     if giorno_anno <= 0.5:
         if ambiente.stagione == "inverno":
             if REINSERIMENTO:
@@ -753,7 +778,7 @@ while True:
             for i in range(random.randint(0, 10)):
                 ambiente.aggiungi_agente(Acqua(ambiente, coord=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT))))
 
-
+    # estate
     elif giorno_anno > 0.5 and giorno_anno <= 1:
         if ambiente.stagione == "primavera":
             if REINSERIMENTO:
@@ -774,7 +799,7 @@ while True:
                 ambiente.aggiungi_agente(Acqua(ambiente, coord=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT))))
 
 
-
+    # autunno
     elif giorno_anno > 1 and giorno_anno <= 1.5:
         if ambiente.stagione == "estate":
             if REINSERIMENTO:
@@ -788,7 +813,7 @@ while True:
             for i in range(random.randint(0, 10)):
                 ambiente.aggiungi_agente(Acqua(ambiente, coord=v2.Vector2D(random.randint(0, WIDTH), random.randint(0, HEIGHT))))
 
-
+    # inverno
     elif giorno_anno > 1.5 and giorno_anno <= 2:
         if ambiente.stagione == "autunno":
             if REINSERIMENTO:
@@ -805,21 +830,22 @@ while True:
 
 
 
-
+    # lista contenente gli animali per specie, utilizzate per collezionare dati
     conigli = [agente for agente in ambiente.agenti.values() if agente.nome == 'coniglio']
     volpi = [agente for agente in ambiente.agenti.values() if agente.nome == 'volpe']
 
-
+    # processamento dell'ambiente
     ambiente.process(tempo_passato_secondi)
     ambiente.render(screen)
 
     frame_num += 1
 
+
     num_volpe = len([1 for agente in ambiente.agenti.values() if agente.nome == 'volpe'])
     num_coniglio = len([1 for agente in ambiente.agenti.values() if agente.nome == 'coniglio'])
 
 
-
+    # ogniqualvolta si raggiungono i 250 frame vengono salvati i dati come nuovo record del csv
     if frame_num >= 250:
         data['reinserimento'].append(REINSERIMENTO)
         data['evoluzione'].append(EVOLUZIONE)
@@ -842,6 +868,7 @@ while True:
         data['numero_volpi_nate'].append(ambiente.numero_volpi_nate)
         conigli = [agente for agente in ambiente.agenti.values() if agente.nome == 'coniglio']
         volpi = [agente for agente in ambiente.agenti.values() if agente.nome == 'volpe']
+
 
         if len(conigli) != 0:
             data['eta_media_conigli'].append(round((sum(coniglio.eta for coniglio in conigli)) / len(conigli), 3))
@@ -878,7 +905,7 @@ while True:
             velocita_corsa_conigli = int(data['velocita_corsa_media_conigli'][len(data['velocita_corsa_media_conigli']) - 1])
 
 
-
+        # se i conigli sono estinti si riutilizzano gli ultimi valori non nulli per evitare salti nei grafici
         else:
             data['eta_media_conigli'].append(0)
             data['media_fame_conigli'].append(0)
@@ -952,7 +979,7 @@ while True:
 
 
 
-
+    # contatori visualizzati a schermo
     str_conigli = "Numero Conigli:" + str(num_coniglio)
     str_volpi = "Numero Volpi:" + str(num_volpe)
     txt_num_conigli = font.render(str_conigli, 1, (0, 0, 0), (255, 255, 255))
@@ -965,7 +992,7 @@ while True:
 
 
 
-
+    # finché esiste un animale si visualizza a schermo il plot real time
     if(num_volpe != 0 or num_coniglio != 0):
 
         # Update stats
@@ -989,7 +1016,7 @@ while True:
 
         pygame.display.update()
 
-    else: #morti tutti gli aniamli
+    else: # caso in cui sono morti tutti gli aniamli
 
         data['reinserimento'].append(REINSERIMENTO)
         data['evoluzione'].append(EVOLUZIONE)
@@ -1040,7 +1067,7 @@ while True:
 
 
 
-
+        # anche in questo caso si memorizzano i dati nel file csv
         dataDF = pd.DataFrame.from_dict(data, orient='index')
         dataDF = dataDF.transpose()
         print(dataDF)
