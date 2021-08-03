@@ -13,9 +13,9 @@ import plot as pl
 pygame.init()
 
 # impostazione seed
-seed = 0
+seed = 0.0
 
-if seed == 0:
+if seed == 0.0:
     seed = random.random()
 
 random.seed(seed)
