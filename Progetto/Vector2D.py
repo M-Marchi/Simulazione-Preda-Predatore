@@ -1,3 +1,4 @@
+# classe per la gestione delle posizioni degli agenti sul piano bidimensionale
 class Vector2D():
     def __init__(self, x=0.0, y=0.0):
         self.x = x
