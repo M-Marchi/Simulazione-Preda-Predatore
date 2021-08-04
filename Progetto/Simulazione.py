@@ -12,7 +12,7 @@ import plot as pl
 # inizializzazione pygame
 pygame.init()
 
-# impostazione seed
+# impostazione seed, default: 0.0
 seed = 0.0
 
 if seed == 0.0:
@@ -26,17 +26,18 @@ GRAFICA = True
 REINSERIMENTO = True
 EVOLUZIONE = True
 
-NUMERO_CONIGLI = 75
-NUMERO_VOLPI = 25
-NUMERO_POZZANGHERE = 200
-NUMERO_CAROTE = 250
+
+NUMERO_CONIGLI = 75               # default: 75
+NUMERO_VOLPI = 25                 # default: 25
+NUMERO_POZZANGHERE = 200          # default: 200
+NUMERO_CAROTE = 250               # default: 250
 
 
-# 0.0005 crescita contenuta - 0.002 crescita abbondante
+# default: 0.0005 crescita contenuta - 0.002 crescita abbondante
 PROBABILITA_CRESCITA_CAROTE = 0.0005
 
-#default 3
-QUANTITA_ACQUA = 3
+
+QUANTITA_ACQUA = 3                 # default: 3
 
 
 # parametri finestra
