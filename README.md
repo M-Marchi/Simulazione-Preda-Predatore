@@ -1,6 +1,6 @@
-# Master's Degree in Computer Science @Unimib
+### Master's Degree in Computer Science @Unimib
 
-## Progetto Sistemi Complessi: Modelli e Simulazione
+# Progetto Sistemi Complessi: Modelli e Simulazione
 L’obiettivo del progetto é quello di realizzare una simulazione basata su agenti al fine di simulare il comportamento di un piccolo ecosistema naturale, costituito
 da una specie di predatori (volpi), una di prede (conigli), una vegetale (carote) e da alcuni specchi d’acqua (pozzanghere). Entrambe le specie animali presenti
 nell’ecosistema devono soddisfare alcuni bisogni fisiologici come il mangiare, il bere e il riprodursi. Per soddisfare la prima di queste necessità, le volpi si cibano
